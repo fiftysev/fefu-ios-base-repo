@@ -8,16 +8,19 @@
 import UIKit
 
 class SignInController: UIViewController {
-
+    
+    @IBOutlet weak var continueButton: ActivityFEFUButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        commonInit()
     }
     
     private func commonInit() {
         let backButton = UIBarButtonItem()
         backButton.title = ""
         navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .always
+        continueButton.setTitle("Продолжить", for: .normal)
     }
 }

@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignUpController" customModule="fefuactivity" customModuleProvider="target">
             <connections>
+                <outlet property="continueButton" destination="Y6z-MZ-2sy" id="E2X-aX-qK1"/>
                 <outlet property="genderPicker" destination="k74-Lh-U6P" id="ZMI-6q-IKm"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -22,13 +23,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <navigationBar contentMode="scaleToFill" largeTitles="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cfx-TW-mpX">
-                    <rect key="frame" x="20" y="100" width="374" height="96"/>
+                    <rect key="frame" x="20" y="-36" width="374" height="96"/>
                     <items>
                         <navigationItem title="Регистрация" id="CDb-0o-JGf"/>
                     </items>
                 </navigationBar>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c8g-QG-JyP">
-                    <rect key="frame" x="0.0" y="212" width="414" height="446.5"/>
+                    <rect key="frame" x="0.0" y="76" width="414" height="582.5"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tCq-eE-B2I">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="430"/>
@@ -126,7 +127,7 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="SignUp-&gt;Logo" translatesAutoresizingMaskIntoConstraints="NO" id="Qc9-8i-w4p" userLabel="SignUp-Logo">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="LogoBW" translatesAutoresizingMaskIntoConstraints="NO" id="Qc9-8i-w4p" userLabel="SignUp-Logo">
                     <rect key="frame" x="174" y="791" width="66" height="42"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="42" id="Ak8-SL-x0G"/>
@@ -145,18 +146,19 @@
                 <constraint firstItem="c8g-QG-JyP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="bBN-8P-vgp"/>
                 <constraint firstItem="7UD-wh-gvb" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="17" id="bHm-YP-XXJ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="cfx-TW-mpX" secondAttribute="trailing" constant="20" id="bMO-MW-2et"/>
+                <constraint firstItem="cfx-TW-mpX" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="-80" id="d8u-lK-4PX"/>
                 <constraint firstItem="Qc9-8i-w4p" firstAttribute="top" secondItem="7UD-wh-gvb" secondAttribute="bottom" constant="28" id="eXK-fq-ZLm"/>
-                <constraint firstItem="cfx-TW-mpX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="100" id="euo-HW-4zv"/>
                 <constraint firstItem="7UD-wh-gvb" firstAttribute="top" secondItem="c8g-QG-JyP" secondAttribute="bottom" constant="28" id="mGr-UT-ukr"/>
                 <constraint firstItem="cfx-TW-mpX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="qJv-HE-6dR"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Qc9-8i-w4p" secondAttribute="bottom" constant="29" id="vAZ-gL-iyI"/>
                 <constraint firstAttribute="trailing" secondItem="7UD-wh-gvb" secondAttribute="trailing" constant="17" id="ycd-rn-nRU"/>
             </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="131.8840579710145" y="87.723214285714278"/>
         </view>
     </objects>
     <resources>
-        <image name="SignUp-&gt;Logo" width="66" height="42"/>
+        <image name="LogoBW" width="66" height="42"/>
         <namedColor name="ButtonBackgroundColor">
             <color red="0.2669999897480011" green="0.061999998986721039" blue="0.91399997472763062" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>

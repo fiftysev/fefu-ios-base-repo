@@ -4,6 +4,7 @@ import UIKit
 class SignUpController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource{
    
     @IBOutlet weak var genderPicker: SignFEFUTextField!
+    @IBOutlet weak var continueButton: ActivityFEFUButton!
     
     let genders = ["", "Мужской", "Женский"]
     
@@ -16,7 +17,8 @@ class SignUpController: UIViewController, UIPickerViewDelegate, UIPickerViewData
         genderPickerView.dataSource = self
         
         genderPicker.inputView = genderPickerView
-
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .always
         commonInit()
     }
     
@@ -30,6 +32,9 @@ class SignUpController: UIViewController, UIPickerViewDelegate, UIPickerViewData
         navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
         
         genderPicker.tintColor = .clear
+        
+        continueButton.setTitle("Продолжить", for: .normal)
+        
         
     }
     

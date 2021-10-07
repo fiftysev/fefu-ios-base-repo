@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignInController" customModule="fefuactivity" customModuleProvider="target">
             <connections>
+                <outlet property="continueButton" destination="meW-3m-dob" id="Afz-hD-dgY"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,13 +22,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <navigationBar contentMode="scaleToFill" verticalCompressionResistancePriority="751" largeTitles="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sw6-KX-lfZ">
-                    <rect key="frame" x="20" y="100" width="414" height="96"/>
+                    <rect key="frame" x="20" y="-36" width="414" height="96"/>
                     <items>
                         <navigationItem title="Вход" id="FcB-lI-vAv"/>
                     </items>
                 </navigationBar>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Логин" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mX7-97-dJa" customClass="SignFEFUTextField" customModule="fefuactivity" customModuleProvider="target">
-                    <rect key="frame" x="17" y="212" width="380" height="53"/>
+                    <rect key="frame" x="17" y="76" width="380" height="53"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="53" id="cMi-Ne-tZJ"/>
                     </constraints>
@@ -35,7 +36,7 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Fq-77-gWj" customClass="SecureFEFUTextField" customModule="fefuactivity" customModuleProvider="target">
-                    <rect key="frame" x="17" y="285" width="380" height="53"/>
+                    <rect key="frame" x="17" y="149" width="380" height="53"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="53" id="bYx-fQ-dFf"/>
                         <constraint firstAttribute="height" constant="53" id="pk6-Bv-uFF"/>
@@ -44,7 +45,7 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="meW-3m-dob" customClass="ActivityFEFUButton" customModule="fefuactivity" customModuleProvider="target">
-                    <rect key="frame" x="40" y="380" width="334" height="56"/>
+                    <rect key="frame" x="40" y="244" width="334" height="56"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="56" id="KkE-iW-iy9"/>
                     </constraints>
@@ -57,8 +58,8 @@
                         <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </buttonConfiguration>
                 </button>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="SignIn-&gt;Background" translatesAutoresizingMaskIntoConstraints="NO" id="sTa-96-8nt">
-                    <rect key="frame" x="0.0" y="508" width="414" height="388"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="sTa-96-8nt">
+                    <rect key="frame" x="0.0" y="372" width="414" height="388"/>
                 </imageView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
@@ -70,6 +71,7 @@
                 <constraint firstItem="sTa-96-8nt" firstAttribute="top" secondItem="meW-3m-dob" secondAttribute="bottom" constant="72" id="Fj6-6v-rEl"/>
                 <constraint firstItem="8Fq-77-gWj" firstAttribute="top" secondItem="mX7-97-dJa" secondAttribute="bottom" constant="20" id="Iah-z6-hXy"/>
                 <constraint firstItem="sTa-96-8nt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Iju-Y4-oNW"/>
+                <constraint firstItem="Sw6-KX-lfZ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="-80" id="MxH-cJ-hf0"/>
                 <constraint firstItem="sTa-96-8nt" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="S5L-DS-636"/>
                 <constraint firstItem="meW-3m-dob" firstAttribute="top" secondItem="8Fq-77-gWj" secondAttribute="bottom" constant="42" id="T5J-9Y-hhg"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="meW-3m-dob" secondAttribute="trailing" constant="40" id="VmK-L9-mJs"/>
@@ -77,14 +79,14 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="8Fq-77-gWj" secondAttribute="trailing" constant="17" id="YaH-JN-cVZ"/>
                 <constraint firstItem="mX7-97-dJa" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="17" id="kcj-hv-54M"/>
                 <constraint firstItem="Sw6-KX-lfZ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="nBu-8v-5FX"/>
-                <constraint firstItem="Sw6-KX-lfZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="100" id="sfv-nf-swe"/>
                 <constraint firstItem="meW-3m-dob" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="40" id="yaq-lg-ohk"/>
             </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="136.95652173913044" y="87.388392857142847"/>
         </view>
     </objects>
     <resources>
-        <image name="SignIn-&gt;Background" width="414" height="388.5"/>
+        <image name="Background" width="414" height="388.5"/>
         <namedColor name="ButtonBackgroundColor">
             <color red="0.2669999897480011" green="0.061999998986721039" blue="0.91399997472763062" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
