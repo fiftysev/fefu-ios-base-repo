@@ -17,8 +17,7 @@ class SignUpController: UIViewController, UIPickerViewDelegate, UIPickerViewData
         genderPickerView.dataSource = self
         
         genderPicker.inputView = genderPickerView
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.largeTitleDisplayMode = .always
+        
         commonInit()
     }
     
@@ -35,7 +34,10 @@ class SignUpController: UIViewController, UIPickerViewDelegate, UIPickerViewData
         
         continueButton.setTitle("Продолжить", for: .normal)
         
-        
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .always
+        navigationItem.title = "Регистрация"
+        navigationItem.prompt = ""
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

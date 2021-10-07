@@ -22,14 +22,8 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <navigationBar contentMode="scaleToFill" largeTitles="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cfx-TW-mpX">
-                    <rect key="frame" x="20" y="-36" width="374" height="96"/>
-                    <items>
-                        <navigationItem title="Регистрация" id="CDb-0o-JGf"/>
-                    </items>
-                </navigationBar>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c8g-QG-JyP">
-                    <rect key="frame" x="0.0" y="76" width="414" height="582.5"/>
+                    <rect key="frame" x="0.0" y="120" width="414" height="538.5"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tCq-eE-B2I">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="430"/>
@@ -139,20 +133,18 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="c8g-QG-JyP" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="7kC-0K-KOW"/>
+                <constraint firstItem="c8g-QG-JyP" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="32" id="7yL-Do-dfc"/>
                 <constraint firstItem="Qc9-8i-w4p" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="CTC-uh-PGT"/>
                 <constraint firstItem="7UD-wh-gvb" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Cld-8F-v0L"/>
-                <constraint firstItem="c8g-QG-JyP" firstAttribute="top" secondItem="cfx-TW-mpX" secondAttribute="bottom" constant="16" id="LEX-7w-X4R"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="7UD-wh-gvb" secondAttribute="bottom" constant="99" id="Uxq-ek-VZD"/>
                 <constraint firstItem="c8g-QG-JyP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="bBN-8P-vgp"/>
                 <constraint firstItem="7UD-wh-gvb" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="17" id="bHm-YP-XXJ"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="cfx-TW-mpX" secondAttribute="trailing" constant="20" id="bMO-MW-2et"/>
-                <constraint firstItem="cfx-TW-mpX" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="-80" id="d8u-lK-4PX"/>
                 <constraint firstItem="Qc9-8i-w4p" firstAttribute="top" secondItem="7UD-wh-gvb" secondAttribute="bottom" constant="28" id="eXK-fq-ZLm"/>
                 <constraint firstItem="7UD-wh-gvb" firstAttribute="top" secondItem="c8g-QG-JyP" secondAttribute="bottom" constant="28" id="mGr-UT-ukr"/>
-                <constraint firstItem="cfx-TW-mpX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="qJv-HE-6dR"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Qc9-8i-w4p" secondAttribute="bottom" constant="29" id="vAZ-gL-iyI"/>
                 <constraint firstAttribute="trailing" secondItem="7UD-wh-gvb" secondAttribute="trailing" constant="17" id="ycd-rn-nRU"/>
             </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="131.8840579710145" y="87.723214285714278"/>
         </view>

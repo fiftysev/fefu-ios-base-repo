@@ -19,8 +19,13 @@ class SignInController: UIViewController {
         let backButton = UIBarButtonItem()
         backButton.title = ""
         navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
+        
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .always
+        
+        navigationItem.title = "Вход"
+        navigationItem.prompt = ""
+        
         continueButton.setTitle("Продолжить", for: .normal)
     }
 }
