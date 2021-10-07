@@ -23,9 +23,15 @@ class ViewController: UIViewController {
         alreadyExistButton.titleLabel?.font = .boldSystemFont(ofSize: 16)
     }
 
-    @IBAction func didTapMyButton(_ sender: ActivityFEFUButton) {
+
+    @IBAction func signUpButtonTap(_ sender: Any) {
         let signUpView = SignUpController(nibName: "SignUpController", bundle: nil)
         navigationController?.pushViewController(signUpView, animated: true)
+    }
+    
+    @IBAction func alreadyExistButtonTap(_ sender: Any) {
+        let signInView = SignInController(nibName: "SignInController", bundle: nil)
+        navigationController?.pushViewController(signInView, animated: true)
     }
     
 }

@@ -2,7 +2,7 @@
 import UIKit
 
 class SignUpController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource{
-    @IBOutlet weak var informationLabel: UILabel!
+   
     @IBOutlet weak var genderPicker: SignFEFUTextField!
     
     let genders = ["", "Мужской", "Женский"]
@@ -16,7 +16,6 @@ class SignUpController: UIViewController, UIPickerViewDelegate, UIPickerViewData
         genderPickerView.dataSource = self
         
         genderPicker.inputView = genderPickerView
-        
 
         commonInit()
     }
