@@ -43,7 +43,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="meW-3m-dob">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="meW-3m-dob" customClass="ActivityFEFUButton" customModule="fefuactivity" customModuleProvider="target">
                     <rect key="frame" x="40" y="380" width="334" height="56"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="56" id="KkE-iW-iy9"/>
@@ -53,11 +53,11 @@
                         <backgroundConfiguration key="background" cornerRadius="12">
                             <color key="backgroundColor" name="ButtonBackgroundColor"/>
                         </backgroundConfiguration>
-                        <fontDescription key="titleFontDescription" type="boldSystem" pointSize="16"/>
+                        <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
                         <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </buttonConfiguration>
                 </button>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="SignIn-&gt;Background" translatesAutoresizingMaskIntoConstraints="NO" id="shy-ZF-lA7">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="SignIn-&gt;Background" translatesAutoresizingMaskIntoConstraints="NO" id="sTa-96-8nt">
                     <rect key="frame" x="0.0" y="508" width="414" height="388"/>
                 </imageView>
             </subviews>
@@ -65,23 +65,22 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="mX7-97-dJa" secondAttribute="trailing" constant="17" id="4Bp-CK-1lu"/>
-                <constraint firstItem="shy-ZF-lA7" firstAttribute="top" secondItem="meW-3m-dob" secondAttribute="bottom" constant="72" id="6Do-Lb-gDa"/>
                 <constraint firstItem="8Fq-77-gWj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="17" id="7my-Zx-ddE"/>
                 <constraint firstItem="Sw6-KX-lfZ" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" constant="20" id="DQR-Dg-VRc"/>
+                <constraint firstItem="sTa-96-8nt" firstAttribute="top" secondItem="meW-3m-dob" secondAttribute="bottom" constant="72" id="Fj6-6v-rEl"/>
                 <constraint firstItem="8Fq-77-gWj" firstAttribute="top" secondItem="mX7-97-dJa" secondAttribute="bottom" constant="20" id="Iah-z6-hXy"/>
-                <constraint firstAttribute="trailing" secondItem="shy-ZF-lA7" secondAttribute="trailing" id="ScB-t1-qXt"/>
+                <constraint firstItem="sTa-96-8nt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Iju-Y4-oNW"/>
+                <constraint firstItem="sTa-96-8nt" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="S5L-DS-636"/>
                 <constraint firstItem="meW-3m-dob" firstAttribute="top" secondItem="8Fq-77-gWj" secondAttribute="bottom" constant="42" id="T5J-9Y-hhg"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="meW-3m-dob" secondAttribute="trailing" constant="40" id="VmK-L9-mJs"/>
                 <constraint firstItem="mX7-97-dJa" firstAttribute="top" secondItem="Sw6-KX-lfZ" secondAttribute="bottom" constant="16" id="Vua-zF-AIu"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="8Fq-77-gWj" secondAttribute="trailing" constant="17" id="YaH-JN-cVZ"/>
-                <constraint firstAttribute="bottom" secondItem="shy-ZF-lA7" secondAttribute="bottom" id="fEI-rk-tWh"/>
                 <constraint firstItem="mX7-97-dJa" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="17" id="kcj-hv-54M"/>
-                <constraint firstItem="shy-ZF-lA7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="lxZ-EL-sbt"/>
                 <constraint firstItem="Sw6-KX-lfZ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="nBu-8v-5FX"/>
                 <constraint firstItem="Sw6-KX-lfZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="100" id="sfv-nf-swe"/>
                 <constraint firstItem="meW-3m-dob" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="40" id="yaq-lg-ohk"/>
             </constraints>
-            <point key="canvasLocation" x="139" y="88"/>
+            <point key="canvasLocation" x="136.95652173913044" y="87.388392857142847"/>
         </view>
     </objects>
     <resources>
