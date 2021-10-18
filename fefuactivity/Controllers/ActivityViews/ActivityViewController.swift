@@ -37,7 +37,7 @@ class ActivityViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Активности"
+        
         startButton.setTitle("Старт", for: .normal)
         
         emptyStateTitle.text = "Время потренить"
@@ -50,18 +50,27 @@ class ActivityViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        startButton.titleLabel?.font = .boldSystemFont(ofSize: 17)
+        startButton.titleLabel?.font = .boldSystemFont(ofSize: 16)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.title = "Активности"
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.title = ""
     }
     
     @IBAction func didExitEmptyState(_ sender: Any) {
         emptyStateView.isHidden = true
     }
-    
-    
 }
 
 extension ActivityViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
         let detailsView = ActivityDetailsViewController(nibName: "ActivityDetailsViewController", bundle: nil)
 
         detailsView.model = data[indexPath.row]

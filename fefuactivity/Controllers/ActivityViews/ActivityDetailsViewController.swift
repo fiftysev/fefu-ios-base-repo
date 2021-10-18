@@ -19,13 +19,18 @@ class ActivityDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         startButton.setTitle("Старт", for: .normal)
+        commonInit()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        startButton.titleLabel?.font = .boldSystemFont(ofSize: 17)
+        startButton.titleLabel?.font = .boldSystemFont(ofSize: 16)
     }
     
-    private func setData() {
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: nil, action: nil)
+    }
+    
+    private func commonInit() {
         distanceLabel.text = model?.distance
         timeAgoLabel.text = model?.timeAgo
         activityDurationLabel.text = model?.duration
@@ -33,5 +38,7 @@ class ActivityDetailsViewController: UIViewController {
         activityTitleLabel.text = model?.activityTitle
         secondTimeAgoLabel.text = model?.timeAgo
         iconActivity.image = model?.icon
+        
+        self.title = model?.activityTitle
     }
 }
