@@ -27,7 +27,7 @@ class ViewController: UIViewController {
 
 
     @IBAction func signUpButtonTap(_ sender: Any) {
-        let signUpView = SignUpController(nibName: "SignUpController", bundle: nil)
+        let signUpView = TabsViewController(nibName: "TabsViewController", bundle: nil)
         navigationController?.pushViewController(signUpView, animated: true)
     }
     
