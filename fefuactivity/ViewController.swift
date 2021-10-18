@@ -18,6 +18,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         signUpButton.setTitle("Зарегистрироваться", for: .normal)
         alreadyExistButton.setTitle( "Уже есть аккаунт?", for: .normal)
+        
+        present(TabsViewController(nibName: "TabsViewController", bundle: nil), animated: true, completion: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -27,7 +29,7 @@ class ViewController: UIViewController {
 
 
     @IBAction func signUpButtonTap(_ sender: Any) {
-        let signUpView = TabsViewController(nibName: "TabsViewController", bundle: nil)
+        let signUpView = SignUpController(nibName: "SignUpController", bundle: nil)
         navigationController?.pushViewController(signUpView, animated: true)
     }
     
@@ -35,6 +37,8 @@ class ViewController: UIViewController {
         let signInView = SignInController(nibName: "SignInController", bundle: nil)
         navigationController?.pushViewController(signInView, animated: true)
     }
+    
+    
     
 }
 

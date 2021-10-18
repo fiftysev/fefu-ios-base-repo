@@ -2,32 +2,29 @@
 import UIKit
 
 // try to test so beautiful
-let data: [ActivityTableViewCellViewModel] =
-[
-    ActivityTableViewCellViewModel(
-        date: "Вчера",
-        distance: "14.32 км",
-        duration: "2 часа 46 минут",
-        activityTitle: "Велосипед",
-        timeAgo: "14 часов назад",
-        icon: UIImage(systemName: "bicycle.circle.fill") ?? UIImage(),
-        startTime: "14:49",
-        endTime: "16:31"
-        ),
-    ActivityTableViewCellViewModel(
-        date: "Май 2022 года",
-        distance: "14.32 км",
-        duration: "2 часа 46 минут",
-        activityTitle: "Велосипед",
-        timeAgo: "14 часов назад",
-        icon: UIImage(systemName: "bicycle.circle.fill") ?? UIImage(),
-        startTime: "14:49",
-        endTime: "16:31"
-        )
-]
+struct ActivitiesTableViewModel {
+    let date: String
+    let activities: [ActivityTableViewCellViewModel]
+}
+
+
 
 class ActivityViewController: UIViewController {
-
+    
+    private let data: [ActivitiesTableViewModel] = [
+        ActivitiesTableViewModel(date: "Вчера", activities: [ActivityTableViewCellViewModel(distance: "14.32 км",
+                                                                                            duration: "2 часа 46 минут",
+                                                                                            activityTitle: "Велосипед",
+                                                                                            timeAgo: "14 часов назад",
+                                                                                            icon: UIImage(systemName: "bicycle.circle.fill") ?? UIImage(),
+                                                                                            startTime: "14:49",
+                                                                                            endTime: "16:31"
+                                                                                           )
+                                                            ]),
+        ActivitiesTableViewModel(date: "22 мая 2022 года", activities: [ActivityTableViewCellViewModel(distance: "14.32 км", duration: "2 часа 46 минут", activityTitle: "Велосипед", timeAgo: "14 часов назад", icon: UIImage(systemName: "bicycle.circle.fill") ?? UIImage(), startTime: "14:49", endTime: "16:31"
+),
+                                                                        ActivityTableViewCellViewModel(distance: "2 км", duration: "8 минут", activityTitle: "Бег", timeAgo: "7 дней назад", icon: UIImage(systemName: "figure.walk.circle.fill") ?? UIImage(), startTime: "12:00", endTime: "12:08")])
+]
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var emptyStateTitle: UILabel!
     @IBOutlet weak var emptyStateDescription: UILabel!
@@ -37,16 +34,25 @@ class ActivityViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        commonInit()
+    }
+    
+    private func commonInit() {
         startButton.setTitle("Старт", for: .normal)
         
         emptyStateTitle.text = "Время потренить"
         emptyStateDescription.text = "Нажимай на кнопку ниже и начинаем трекать активность"
+        emptyStateView.backgroundColor = .clear
         
         listOfActivities.dataSource = self
         listOfActivities.delegate = self
         
         listOfActivities.register(UINib(nibName: "ActivityTableViewCell", bundle: nil), forCellReuseIdentifier: "ActivityTableViewCell")
+        
+        listOfActivities.separatorStyle = .none
+        listOfActivities.backgroundColor = .clear
+        
+        listOfActivities.isHidden = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -63,8 +69,11 @@ class ActivityViewController: UIViewController {
     
     @IBAction func didExitEmptyState(_ sender: Any) {
         emptyStateView.isHidden = true
+        listOfActivities.isHidden = false
     }
 }
+
+
 
 extension ActivityViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -73,20 +82,38 @@ extension ActivityViewController: UITableViewDelegate {
         
         let detailsView = ActivityDetailsViewController(nibName: "ActivityDetailsViewController", bundle: nil)
 
-        detailsView.model = data[indexPath.row]
+        detailsView.model = self.data[indexPath.section].activities[indexPath.row]
         
         navigationController?.pushViewController(detailsView, animated: true)
     }
 }
 
+
+
 extension ActivityViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         return data.count
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = UILabel()
+        header.font = .boldSystemFont(ofSize: 20)
+        header.text = data[section].date
+        return header
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return data[section].activities.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let activityData = data[indexPath.row]
+        let activityData = self.data[indexPath.section].activities[indexPath.row]
         
         let dequeuedCell = listOfActivities.dequeueReusableCell(withIdentifier: "ActivityTableViewCell", for: indexPath)
         

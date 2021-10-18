@@ -1,7 +1,6 @@
 import UIKit
 
 struct ActivityTableViewCellViewModel {
-    let date: String
     let distance: String
     let duration: String
     let activityTitle: String
@@ -20,6 +19,13 @@ class ActivityTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.masksToBounds = true
+        layer.cornerRadius = 10
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

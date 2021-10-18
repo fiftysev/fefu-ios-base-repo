@@ -25,10 +25,10 @@
 		B433AEC2270ED759004A6CB1 /* SignInController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B433AEC0270ED759004A6CB1 /* SignInController.xib */; };
 		B43952EF271D6ED7002B8DD4 /* ActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43952ED271D6ED7002B8DD4 /* ActivityTableViewCell.swift */; };
 		B43952F0271D6ED7002B8DD4 /* ActivityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B43952EE271D6ED7002B8DD4 /* ActivityTableViewCell.xib */; };
-		B43952F6271D83CE002B8DD4 /* TabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43952F4271D83CE002B8DD4 /* TabsViewController.swift */; };
-		B43952F7271D83CE002B8DD4 /* TabsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B43952F5271D83CE002B8DD4 /* TabsViewController.xib */; };
 		B43952FA271D8406002B8DD4 /* ActivityDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43952F8271D8406002B8DD4 /* ActivityDetailsViewController.swift */; };
 		B43952FB271D8406002B8DD4 /* ActivityDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B43952F9271D8406002B8DD4 /* ActivityDetailsViewController.xib */; };
+		B43952FE271DBB58002B8DD4 /* TabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43952FC271DBB58002B8DD4 /* TabsViewController.swift */; };
+		B43952FF271DBB58002B8DD4 /* TabsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B43952FD271DBB58002B8DD4 /* TabsViewController.xib */; };
 		B452D057270DB88800FA4262 /* SignFEFUTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B452D056270DB88800FA4262 /* SignFEFUTextField.swift */; };
 		B490BB98270ACED100F11E64 /* ActivityFEFUButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B490BB97270ACED100F11E64 /* ActivityFEFUButton.swift */; };
 /* End PBXBuildFile section */
@@ -54,10 +54,10 @@
 		B433AEC0270ED759004A6CB1 /* SignInController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInController.xib; sourceTree = "<group>"; };
 		B43952ED271D6ED7002B8DD4 /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
 		B43952EE271D6ED7002B8DD4 /* ActivityTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityTableViewCell.xib; sourceTree = "<group>"; };
-		B43952F4271D83CE002B8DD4 /* TabsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsViewController.swift; sourceTree = "<group>"; };
-		B43952F5271D83CE002B8DD4 /* TabsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabsViewController.xib; sourceTree = "<group>"; };
 		B43952F8271D8406002B8DD4 /* ActivityDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailsViewController.swift; sourceTree = "<group>"; };
 		B43952F9271D8406002B8DD4 /* ActivityDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityDetailsViewController.xib; sourceTree = "<group>"; };
+		B43952FC271DBB58002B8DD4 /* TabsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsViewController.swift; sourceTree = "<group>"; };
+		B43952FD271DBB58002B8DD4 /* TabsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabsViewController.xib; sourceTree = "<group>"; };
 		B452D056270DB88800FA4262 /* SignFEFUTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignFEFUTextField.swift; sourceTree = "<group>"; };
 		B490BB97270ACED100F11E64 /* ActivityFEFUButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFEFUButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -112,10 +112,10 @@
 				B401A77F271D5D18003D9211 /* ActivityViewController.xib */,
 				B401A782271D5D27003D9211 /* ProfileViewController.swift */,
 				B401A783271D5D27003D9211 /* ProfileViewController.xib */,
-				B43952F4271D83CE002B8DD4 /* TabsViewController.swift */,
-				B43952F5271D83CE002B8DD4 /* TabsViewController.xib */,
 				B43952F8271D8406002B8DD4 /* ActivityDetailsViewController.swift */,
 				B43952F9271D8406002B8DD4 /* ActivityDetailsViewController.xib */,
+				B43952FC271DBB58002B8DD4 /* TabsViewController.swift */,
+				B43952FD271DBB58002B8DD4 /* TabsViewController.xib */,
 			);
 			path = ActivityViews;
 			sourceTree = "<group>";
@@ -203,12 +203,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DE4E5D1270A5CD0004A30CA /* LaunchScreen.storyboard in Resources */,
-				B43952F7271D83CE002B8DD4 /* TabsViewController.xib in Resources */,
 				B43952F0271D6ED7002B8DD4 /* ActivityTableViewCell.xib in Resources */,
 				1DE4E5CE270A5CD0004A30CA /* Assets.xcassets in Resources */,
 				B401A785271D5D27003D9211 /* ProfileViewController.xib in Resources */,
 				1DE4E5CC270A5CCE004A30CA /* Main.storyboard in Resources */,
 				B40A1682270DF7D6004E594A /* SignUpController.xib in Resources */,
+				B43952FF271DBB58002B8DD4 /* TabsViewController.xib in Resources */,
 				B401A781271D5D18003D9211 /* ActivityViewController.xib in Resources */,
 				B43952FB271D8406002B8DD4 /* ActivityDetailsViewController.xib in Resources */,
 				B433AEC2270ED759004A6CB1 /* SignInController.xib in Resources */,
@@ -224,13 +224,13 @@
 			files = (
 				B40A167C270DD936004E594A /* SecureFEFUTextField.swift in Sources */,
 				1DE4E5C9270A5CCE004A30CA /* ViewController.swift in Sources */,
-				B43952F6271D83CE002B8DD4 /* TabsViewController.swift in Sources */,
 				B40A1681270DF7D6004E594A /* SignUpController.swift in Sources */,
 				B43952FA271D8406002B8DD4 /* ActivityDetailsViewController.swift in Sources */,
 				B401A787271D6182003D9211 /* StartActivityButton.swift in Sources */,
 				B401A780271D5D18003D9211 /* ActivityViewController.swift in Sources */,
 				B452D057270DB88800FA4262 /* SignFEFUTextField.swift in Sources */,
 				1DE4E5C5270A5CCE004A30CA /* AppDelegate.swift in Sources */,
+				B43952FE271DBB58002B8DD4 /* TabsViewController.swift in Sources */,
 				B401A784271D5D27003D9211 /* ProfileViewController.swift in Sources */,
 				B433AEC1270ED759004A6CB1 /* SignInController.swift in Sources */,
 				B490BB98270ACED100F11E64 /* ActivityFEFUButton.swift in Sources */,

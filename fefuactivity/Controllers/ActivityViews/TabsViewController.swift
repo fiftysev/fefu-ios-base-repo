@@ -1,8 +1,13 @@
-
+//
+//  TabsViewController.swift
+//  fefuactivity
+//
+//  Created by Егор Блинов on 19.10.2021.
+//
 
 import UIKit
 
-class TabsViewController: UIViewController {
+class TabsViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -10,7 +15,6 @@ class TabsViewController: UIViewController {
     }
 
     private func createTabBar() {
-        let tabBarController = UITabBarController(nibName: nil, bundle: nil)
         
         let activityNavigationController = UINavigationController(rootViewController: ActivityViewController())
         let profileNavigationController = UINavigationController(rootViewController: ProfileViewController())
@@ -21,10 +25,8 @@ class TabsViewController: UIViewController {
         profileNavigationController.tabBarItem.title = "Профиль"
         profileNavigationController.tabBarItem.image = UIImage(systemName: "circle")
         
-        tabBarController.setViewControllers([activityNavigationController, profileNavigationController], animated: true)
+        self.setViewControllers([activityNavigationController, profileNavigationController], animated: true)
         
-        tabBarController.modalPresentationStyle = .overFullScreen
-        
-        present(tabBarController, animated: true, completion: nil)
+        modalPresentationStyle = .overFullScreen
     }
 }

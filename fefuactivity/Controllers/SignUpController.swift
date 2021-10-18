@@ -23,7 +23,6 @@ class SignUpController: UIViewController, UIPickerViewDelegate, UIPickerViewData
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
     }
     
     private func commonInit() {
