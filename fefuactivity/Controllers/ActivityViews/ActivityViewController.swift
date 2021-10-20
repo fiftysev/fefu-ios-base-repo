@@ -62,6 +62,8 @@ class ActivityViewController: UIViewController {
     }
     
     private func commonInit() {
+        self.title = "Активности"
+        
         startButton.setTitle("Старт", for: .normal)
         startButton.titleLabel?.font = .boldSystemFont(ofSize: 16)
         
