@@ -11,21 +11,45 @@ struct ActivitiesTableViewModel {
 
 class ActivityViewController: UIViewController {
     
-    private let data: [ActivitiesTableViewModel] = [
-        ActivitiesTableViewModel(date: "Вчера", activities: [ActivityTableViewCellViewModel(distance: "14.32 км",
-                                                                                            duration: "2 часа 46 минут",
-                                                                                            activityTitle: "Велосипед",
-                                                                                            timeAgo: "14 часов назад",
-                                                                                            icon: UIImage(systemName: "bicycle.circle.fill") ?? UIImage(),
-                                                                                            startTime: "14:49",
-                                                                                            endTime: "16:31"
-                                                                                           )
-                                                            ]),
-        ActivitiesTableViewModel(date: "22 мая 2022 года", activities: [ActivityTableViewCellViewModel(distance: "14.32 км", duration: "2 часа 46 минут", activityTitle: "Велосипед", timeAgo: "14 часов назад", icon: UIImage(systemName: "bicycle.circle.fill") ?? UIImage(), startTime: "14:49", endTime: "16:31"
-),
-                                                                        ActivityTableViewCellViewModel(distance: "2 км", duration: "8 минут", activityTitle: "Бег", timeAgo: "7 дней назад", icon: UIImage(systemName: "figure.walk.circle.fill") ?? UIImage(), startTime: "12:00", endTime: "12:08")])
-]
-    @IBOutlet weak var startButton: UIButton!
+    private let data: [ActivitiesTableViewModel] = {
+        let yesterdayActivities: [ActivityTableViewCellViewModel] = [
+            ActivityTableViewCellViewModel(distance: "14.32 км",
+                                           duration: "2 часа 46 минут",
+                                           activityTitle: "Велосипед",
+                                           timeAgo: "14 часов назад",
+                                           icon: UIImage(systemName: "bicycle.circle.fill") ?? UIImage(),
+                                           startTime: "14:49",
+                                           endTime: "16:31"
+                                          )
+        ]
+        
+        let mayActivities: [ActivityTableViewCellViewModel] = [
+            ActivityTableViewCellViewModel(distance: "14.32 км",
+                                           duration: "2 часа 46 минут",
+                                           activityTitle: "Велосипед",
+                                           timeAgo: "14 часов назад",
+                                           icon: UIImage(systemName: "bicycle.circle.fill") ?? UIImage(),
+                                           startTime: "14:49",
+                                           endTime: "16:31"
+                                          ),
+            ActivityTableViewCellViewModel(distance: "2 км",
+                                           duration: "15 минут",
+                                           activityTitle: "Бег",
+                                           timeAgo: "7 дней назад",
+                                           icon: UIImage(systemName: "figure.walk.circle.fill") ?? UIImage(),
+                                           startTime: "12:15",
+                                           endTime: "12:30"
+                                          )
+        ]
+        
+        return [
+            ActivitiesTableViewModel(date: "Вчера", activities: yesterdayActivities),
+            ActivitiesTableViewModel(date: "Май 22 года", activities: mayActivities)
+        ]
+    }()
+    
+    
+    @IBOutlet weak var startButton: ActivityFEFUButton!
     @IBOutlet weak var emptyStateTitle: UILabel!
     @IBOutlet weak var emptyStateDescription: UILabel!
     @IBOutlet weak var emptyStateView: UIView!
@@ -39,6 +63,7 @@ class ActivityViewController: UIViewController {
     
     private func commonInit() {
         startButton.setTitle("Старт", for: .normal)
+        startButton.titleLabel?.font = .boldSystemFont(ofSize: 16)
         
         emptyStateTitle.text = "Время потренить"
         emptyStateDescription.text = "Нажимай на кнопку ниже и начинаем трекать активность"
@@ -55,17 +80,6 @@ class ActivityViewController: UIViewController {
         listOfActivities.isHidden = true
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        startButton.titleLabel?.font = .boldSystemFont(ofSize: 16)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        self.title = "Активности"
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        self.title = ""
-    }
     
     @IBAction func didExitEmptyState(_ sender: Any) {
         emptyStateView.isHidden = true

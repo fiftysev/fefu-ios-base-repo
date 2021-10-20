@@ -4,7 +4,7 @@ class ActivityDetailsViewController: UIViewController {
     
     var model: ActivityTableViewCellViewModel? = nil
     
-    @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var startButton: ActivityFEFUButton!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var timeAgoLabel: UILabel!
     @IBOutlet weak var activityDurationLabel: UILabel!
@@ -19,11 +19,8 @@ class ActivityDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         startButton.setTitle("Старт", for: .normal)
-        commonInit()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
         startButton.titleLabel?.font = .boldSystemFont(ofSize: 16)
+        commonInit()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,7 +31,7 @@ class ActivityDetailsViewController: UIViewController {
         distanceLabel.text = model?.distance
         timeAgoLabel.text = model?.timeAgo
         activityDurationLabel.text = model?.duration
-        startEndTimeLabel.text = model?.distance
+        startEndTimeLabel.text = "Старт: \(model?.startTime ?? "нет данных") • Финиш: \(model?.endTime ?? "нет данных")"
         activityTitleLabel.text = model?.activityTitle
         secondTimeAgoLabel.text = model?.timeAgo
         iconActivity.image = model?.icon

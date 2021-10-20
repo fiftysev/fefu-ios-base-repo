@@ -11,6 +11,9 @@ struct ActivityTableViewCellViewModel {
 }
 
 class ActivityTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var designContentView: UIView!
+    
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var activityTitleLabel: UILabel!
@@ -19,15 +22,12 @@ class ActivityTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        self.backgroundColor = .clear
+        self.selectionStyle = .none
+        designContentView.layer.cornerRadius = 10
+        designContentView.layer.masksToBounds = true
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        layer.masksToBounds = true
-        layer.cornerRadius = 10
-    }
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
