@@ -31,6 +31,8 @@
 		B43952FF271DBB58002B8DD4 /* TabsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B43952FD271DBB58002B8DD4 /* TabsViewController.xib */; };
 		B452D057270DB88800FA4262 /* SignFEFUTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B452D056270DB88800FA4262 /* SignFEFUTextField.swift */; };
 		B490BB98270ACED100F11E64 /* ActivityFEFUButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B490BB97270ACED100F11E64 /* ActivityFEFUButton.swift */; };
+		B4DC15E8273A89DF00CB6BE3 /* StartActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC15E6273A89DF00CB6BE3 /* StartActivityViewController.swift */; };
+		B4DC15E9273A89DF00CB6BE3 /* StartActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4DC15E7273A89DF00CB6BE3 /* StartActivityViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +62,8 @@
 		B43952FD271DBB58002B8DD4 /* TabsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabsViewController.xib; sourceTree = "<group>"; };
 		B452D056270DB88800FA4262 /* SignFEFUTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignFEFUTextField.swift; sourceTree = "<group>"; };
 		B490BB97270ACED100F11E64 /* ActivityFEFUButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFEFUButton.swift; sourceTree = "<group>"; };
+		B4DC15E6273A89DF00CB6BE3 /* StartActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartActivityViewController.swift; sourceTree = "<group>"; };
+		B4DC15E7273A89DF00CB6BE3 /* StartActivityViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartActivityViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,17 +109,95 @@
 			path = fefuactivity;
 			sourceTree = "<group>";
 		};
-		B43952F1271D82F1002B8DD4 /* ActivityViews */ = {
+		B42572412723A7B1007DEE33 /* ActivityController */ = {
 			isa = PBXGroup;
 			children = (
 				B401A77E271D5D18003D9211 /* ActivityViewController.swift */,
 				B401A77F271D5D18003D9211 /* ActivityViewController.xib */,
-				B401A782271D5D27003D9211 /* ProfileViewController.swift */,
-				B401A783271D5D27003D9211 /* ProfileViewController.xib */,
+			);
+			path = ActivityController;
+			sourceTree = "<group>";
+		};
+		B42572422723A7C9007DEE33 /* ActivityDetailsController */ = {
+			isa = PBXGroup;
+			children = (
 				B43952F8271D8406002B8DD4 /* ActivityDetailsViewController.swift */,
 				B43952F9271D8406002B8DD4 /* ActivityDetailsViewController.xib */,
+			);
+			path = ActivityDetailsController;
+			sourceTree = "<group>";
+		};
+		B42572432723A7D8007DEE33 /* ProfileController */ = {
+			isa = PBXGroup;
+			children = (
+				B401A782271D5D27003D9211 /* ProfileViewController.swift */,
+				B401A783271D5D27003D9211 /* ProfileViewController.xib */,
+			);
+			path = ProfileController;
+			sourceTree = "<group>";
+		};
+		B42572442723A7E7007DEE33 /* TabsViewController */ = {
+			isa = PBXGroup;
+			children = (
 				B43952FC271DBB58002B8DD4 /* TabsViewController.swift */,
 				B43952FD271DBB58002B8DD4 /* TabsViewController.xib */,
+			);
+			path = TabsViewController;
+			sourceTree = "<group>";
+		};
+		B42572452723A7FF007DEE33 /* SignUpController */ = {
+			isa = PBXGroup;
+			children = (
+				B40A1680270DF7D6004E594A /* SignUpController.xib */,
+				B40A167F270DF7D6004E594A /* SignUpController.swift */,
+			);
+			path = SignUpController;
+			sourceTree = "<group>";
+		};
+		B42572462723A815007DEE33 /* SignInController */ = {
+			isa = PBXGroup;
+			children = (
+				B433AEBF270ED759004A6CB1 /* SignInController.swift */,
+				B433AEC0270ED759004A6CB1 /* SignInController.xib */,
+			);
+			path = SignInController;
+			sourceTree = "<group>";
+		};
+		B42572472723A822007DEE33 /* TextFields */ = {
+			isa = PBXGroup;
+			children = (
+				B452D056270DB88800FA4262 /* SignFEFUTextField.swift */,
+				B40A167B270DD936004E594A /* SecureFEFUTextField.swift */,
+			);
+			path = TextFields;
+			sourceTree = "<group>";
+		};
+		B42572482723A82C007DEE33 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				B490BB97270ACED100F11E64 /* ActivityFEFUButton.swift */,
+				B401A786271D6182003D9211 /* StartActivityButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		B42572492723A839007DEE33 /* ActivityTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				B43952ED271D6ED7002B8DD4 /* ActivityTableViewCell.swift */,
+				B43952EE271D6ED7002B8DD4 /* ActivityTableViewCell.xib */,
+			);
+			path = ActivityTableViewCell;
+			sourceTree = "<group>";
+		};
+		B43952F1271D82F1002B8DD4 /* ActivityViews */ = {
+			isa = PBXGroup;
+			children = (
+				B4DC15EA273A8F3A00CB6BE3 /* StartActivityController */,
+				B42572442723A7E7007DEE33 /* TabsViewController */,
+				B42572412723A7B1007DEE33 /* ActivityController */,
+				B42572432723A7D8007DEE33 /* ProfileController */,
+				B42572422723A7C9007DEE33 /* ActivityDetailsController */,
 			);
 			path = ActivityViews;
 			sourceTree = "<group>";
@@ -123,10 +205,8 @@
 		B47D35BA271B13E10072FFB8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B40A1680270DF7D6004E594A /* SignUpController.xib */,
-				B433AEC0270ED759004A6CB1 /* SignInController.xib */,
-				B40A167F270DF7D6004E594A /* SignUpController.swift */,
-				B433AEBF270ED759004A6CB1 /* SignInController.swift */,
+				B42572452723A7FF007DEE33 /* SignUpController */,
+				B42572462723A815007DEE33 /* SignInController */,
 				B43952F1271D82F1002B8DD4 /* ActivityViews */,
 			);
 			path = Controllers;
@@ -135,14 +215,20 @@
 		B47D35BB271B13FA0072FFB8 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				B452D056270DB88800FA4262 /* SignFEFUTextField.swift */,
-				B490BB97270ACED100F11E64 /* ActivityFEFUButton.swift */,
-				B40A167B270DD936004E594A /* SecureFEFUTextField.swift */,
-				B401A786271D6182003D9211 /* StartActivityButton.swift */,
-				B43952ED271D6ED7002B8DD4 /* ActivityTableViewCell.swift */,
-				B43952EE271D6ED7002B8DD4 /* ActivityTableViewCell.xib */,
+				B42572472723A822007DEE33 /* TextFields */,
+				B42572482723A82C007DEE33 /* Buttons */,
+				B42572492723A839007DEE33 /* ActivityTableViewCell */,
 			);
 			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		B4DC15EA273A8F3A00CB6BE3 /* StartActivityController */ = {
+			isa = PBXGroup;
+			children = (
+				B4DC15E6273A89DF00CB6BE3 /* StartActivityViewController.swift */,
+				B4DC15E7273A89DF00CB6BE3 /* StartActivityViewController.xib */,
+			);
+			path = StartActivityController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,6 +297,7 @@
 				B43952FF271DBB58002B8DD4 /* TabsViewController.xib in Resources */,
 				B401A781271D5D18003D9211 /* ActivityViewController.xib in Resources */,
 				B43952FB271D8406002B8DD4 /* ActivityDetailsViewController.xib in Resources */,
+				B4DC15E9273A89DF00CB6BE3 /* StartActivityViewController.xib in Resources */,
 				B433AEC2270ED759004A6CB1 /* SignInController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -231,6 +318,7 @@
 				B452D057270DB88800FA4262 /* SignFEFUTextField.swift in Sources */,
 				1DE4E5C5270A5CCE004A30CA /* AppDelegate.swift in Sources */,
 				B43952FE271DBB58002B8DD4 /* TabsViewController.swift in Sources */,
+				B4DC15E8273A89DF00CB6BE3 /* StartActivityViewController.swift in Sources */,
 				B401A784271D5D27003D9211 /* ProfileViewController.swift in Sources */,
 				B433AEC1270ED759004A6CB1 /* SignInController.swift in Sources */,
 				B490BB98270ACED100F11E64 /* ActivityFEFUButton.swift in Sources */,

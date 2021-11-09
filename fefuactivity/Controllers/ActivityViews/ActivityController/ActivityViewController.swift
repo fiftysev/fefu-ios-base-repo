@@ -84,8 +84,11 @@ class ActivityViewController: UIViewController {
     
     
     @IBAction func didExitEmptyState(_ sender: Any) {
-        emptyStateView.isHidden = true
-        listOfActivities.isHidden = false
+        let startActivityController = StartActivityViewController(nibName: "StartActivityViewController", bundle: nil)
+        
+//        emptyStateView.isHidden = true
+//        listOfActivities.isHidden = false
+        navigationController?.pushViewController(startActivityController, animated: true)
     }
 }
 
