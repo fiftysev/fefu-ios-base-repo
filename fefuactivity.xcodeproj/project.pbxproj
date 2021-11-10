@@ -30,6 +30,8 @@
 		B43952FE271DBB58002B8DD4 /* TabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43952FC271DBB58002B8DD4 /* TabsViewController.swift */; };
 		B43952FF271DBB58002B8DD4 /* TabsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B43952FD271DBB58002B8DD4 /* TabsViewController.xib */; };
 		B452D057270DB88800FA4262 /* SignFEFUTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B452D056270DB88800FA4262 /* SignFEFUTextField.swift */; };
+		B45FCBFA273B87EA00C8226E /* ActivityTypeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45FCBF8273B87EA00C8226E /* ActivityTypeCollectionViewCell.swift */; };
+		B45FCBFB273B87EA00C8226E /* ActivityTypeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B45FCBF9273B87EA00C8226E /* ActivityTypeCollectionViewCell.xib */; };
 		B490BB98270ACED100F11E64 /* ActivityFEFUButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B490BB97270ACED100F11E64 /* ActivityFEFUButton.swift */; };
 		B4DC15E8273A89DF00CB6BE3 /* StartActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC15E6273A89DF00CB6BE3 /* StartActivityViewController.swift */; };
 		B4DC15E9273A89DF00CB6BE3 /* StartActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4DC15E7273A89DF00CB6BE3 /* StartActivityViewController.xib */; };
@@ -61,8 +63,10 @@
 		B43952FC271DBB58002B8DD4 /* TabsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsViewController.swift; sourceTree = "<group>"; };
 		B43952FD271DBB58002B8DD4 /* TabsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabsViewController.xib; sourceTree = "<group>"; };
 		B452D056270DB88800FA4262 /* SignFEFUTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignFEFUTextField.swift; sourceTree = "<group>"; };
+		B45FCBF8273B87EA00C8226E /* ActivityTypeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTypeCollectionViewCell.swift; sourceTree = "<group>"; };
+		B45FCBF9273B87EA00C8226E /* ActivityTypeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityTypeCollectionViewCell.xib; sourceTree = "<group>"; };
 		B490BB97270ACED100F11E64 /* ActivityFEFUButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFEFUButton.swift; sourceTree = "<group>"; };
-		B4DC15E6273A89DF00CB6BE3 /* StartActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartActivityViewController.swift; sourceTree = "<group>"; };
+		B4DC15E6273A89DF00CB6BE3 /* StartActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartActivityViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		B4DC15E7273A89DF00CB6BE3 /* StartActivityViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartActivityViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -202,6 +206,15 @@
 			path = ActivityViews;
 			sourceTree = "<group>";
 		};
+		B45FCBF5273B81A400C8226E /* ActivityTypeCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				B45FCBF8273B87EA00C8226E /* ActivityTypeCollectionViewCell.swift */,
+				B45FCBF9273B87EA00C8226E /* ActivityTypeCollectionViewCell.xib */,
+			);
+			path = ActivityTypeCollectionViewCell;
+			sourceTree = "<group>";
+		};
 		B47D35BA271B13E10072FFB8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -218,6 +231,7 @@
 				B42572472723A822007DEE33 /* TextFields */,
 				B42572482723A82C007DEE33 /* Buttons */,
 				B42572492723A839007DEE33 /* ActivityTableViewCell */,
+				B45FCBF5273B81A400C8226E /* ActivityTypeCollectionViewCell */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -297,6 +311,7 @@
 				B43952FF271DBB58002B8DD4 /* TabsViewController.xib in Resources */,
 				B401A781271D5D18003D9211 /* ActivityViewController.xib in Resources */,
 				B43952FB271D8406002B8DD4 /* ActivityDetailsViewController.xib in Resources */,
+				B45FCBFB273B87EA00C8226E /* ActivityTypeCollectionViewCell.xib in Resources */,
 				B4DC15E9273A89DF00CB6BE3 /* StartActivityViewController.xib in Resources */,
 				B433AEC2270ED759004A6CB1 /* SignInController.xib in Resources */,
 			);
@@ -322,6 +337,7 @@
 				B401A784271D5D27003D9211 /* ProfileViewController.swift in Sources */,
 				B433AEC1270ED759004A6CB1 /* SignInController.swift in Sources */,
 				B490BB98270ACED100F11E64 /* ActivityFEFUButton.swift in Sources */,
+				B45FCBFA273B87EA00C8226E /* ActivityTypeCollectionViewCell.swift in Sources */,
 				1DE4E5C7270A5CCE004A30CA /* SceneDelegate.swift in Sources */,
 				B43952EF271D6ED7002B8DD4 /* ActivityTableViewCell.swift in Sources */,
 			);
