@@ -9,6 +9,7 @@ class ViewController: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
+            
         signUpButton.setTitle("Зарегистрироваться", for: .normal)
         alreadyExistButton.setTitle( "Уже есть аккаунт?", for: .normal)
     }

@@ -7,20 +7,37 @@ private let image = UIImage(named: "Background")
 private let identifier = "ActivityTypeCollectionViewCell"
 
 class StartActivityViewController: UIViewController {
+    //MARK: - Set variables and outlets
     
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var startActivity: UIView!
+    
+    // view for keep all states view, so interesting but when i embed some views in this container, i have a lot of warnings, it's unbeatiful
+    @IBOutlet weak var statesContainer: UIView!
+    
+    // state when go to this view, before start
+    @IBOutlet weak var startActivityStateView: UIView!
+    
     @IBOutlet weak var toStartLabel: UILabel!
     @IBOutlet weak var startActivityButton: ActivityFEFUButton!
     @IBOutlet weak var listOfActivitiesType: UICollectionView!
     
-    private let data: [ActivityTypeCellViewModel] =
+    // state when user manage self activity tracking
+    @IBOutlet weak var manageActivityStateView: UIView!
+    @IBOutlet weak var typeOfActivityLabel: UILabel!
+    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var pauseOrResumeButton: UIButton!
+    @IBOutlet weak var finishButton: UIButton!
+    
+    // items for collection view
+    private let activitiesTypeData: [ActivityTypeCellViewModel] =
     [
-        ActivityTypeCellViewModel(activityType: "Велосипед", activityTypeImage: image ?? UIImage()),
-        ActivityTypeCellViewModel(activityType: "Бег", activityTypeImage: image ?? UIImage()),
-        ActivityTypeCellViewModel(activityType: "Ходьба", activityTypeImage: image ?? UIImage())
+        ActivityTypeCellViewModel(activityType: "Велосипед", activityTypeImage: image ?? UIImage(), titleForManageState: "На велике"),
+        ActivityTypeCellViewModel(activityType: "Бег", activityTypeImage: image ?? UIImage(), titleForManageState: "Бежим"),
+        ActivityTypeCellViewModel(activityType: "Ходьба", activityTypeImage: image ?? UIImage(), titleForManageState: "Идем")
     ]
     
+    // save for delete old routes
     private var previousRouteSegment: MKPolyline?
     
     private let locationManager: CLLocationManager = {
@@ -43,6 +60,7 @@ class StartActivityViewController: UIViewController {
         }
     }
     
+    // array for coordinates to update user route
     fileprivate var userLocationsHistory: [CLLocation] = [] {
         didSet {
             let coordinates = userLocationsHistory.map { $0.coordinate }
@@ -83,16 +101,47 @@ class StartActivityViewController: UIViewController {
     }
     
     private func commonInit() {
-        startActivity.layer.cornerRadius = 25
-        
+        statesContainer.backgroundColor = .clear
+        activityStateInit()
+        manageStateInit()
+    }
+    
+    private func activityStateInit() {
+        startActivityStateView.layer.cornerRadius = 25
+        startActivityStateView.isHidden = false
         toStartLabel.text = "Погнали? :)"
-        
         startActivityButton.setTitle("Старт", for: .normal)
     }
     
+    private func manageStateInit() {
+        manageActivityStateView.layer.cornerRadius = 25
+        manageActivityStateView.isHidden = true
+        
+        pauseOrResumeButton.setTitle("", for: .normal)
+        pauseOrResumeButton.layer.cornerRadius = 50
+        pauseOrResumeButton.backgroundColor = .white
+        pauseOrResumeButton.setImage(UIImage(systemName: "pause"), for: .normal)
+                
+        finishButton.setTitle("", for: .normal)
+        finishButton.layer.cornerRadius = 50
+        finishButton.backgroundColor = .white
+        finishButton.setImage(UIImage(systemName: "xmark"), for: .normal)
+    }
     
     @IBAction func didStartTracking(_ sender: Any) {
+        startActivityStateView.isHidden = true
+        manageActivityStateView.isHidden = false
+        
         locationManager.startUpdatingLocation()
+    }
+    
+    @IBAction func didPauseTracking(_ sender: Any) {
+        userLocationsHistory = []
+        locationManager.stopUpdatingLocation()
+    }
+    
+    @IBAction func didFinishTracking(_ sender: Any) {
+        locationManager.stopUpdatingLocation()
     }
 }
 
@@ -131,11 +180,11 @@ extension StartActivityViewController: MKMapViewDelegate {
 extension StartActivityViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return data.count
+        return activitiesTypeData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let activityTypeData = data[indexPath.row]
+        let activityTypeData = activitiesTypeData[indexPath.row]
         
         let dequeuedCell = listOfActivitiesType.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
         
@@ -155,6 +204,8 @@ extension StartActivityViewController: UICollectionViewDelegate {
         if let cell = collectionView.cellForItem(at: indexPath) as? ActivityTypeCollectionViewCell {
             cell.cardView.layer.borderWidth = 2
             cell.cardView.layer.borderColor = UIColor(named: "ButtonBackgroundColor")?.cgColor
+            
+            typeOfActivityLabel.text = cell.titleForManageState
         }
     }
     
@@ -163,4 +214,5 @@ extension StartActivityViewController: UICollectionViewDelegate {
             cell.cardView.layer.borderWidth = 0
         }
     }
+    
 }
