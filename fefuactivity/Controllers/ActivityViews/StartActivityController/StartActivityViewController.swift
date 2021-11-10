@@ -9,16 +9,13 @@ private let identifier = "ActivityTypeCollectionViewCell"
 class StartActivityViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var statesContainer: UIView!
+    @IBOutlet weak var startActivity: UIView!
     @IBOutlet weak var toStartLabel: UILabel!
     @IBOutlet weak var startActivityButton: ActivityFEFUButton!
     @IBOutlet weak var listOfActivitiesType: UICollectionView!
     
     private let data: [ActivityTypeCellViewModel] =
     [
-        ActivityTypeCellViewModel(activityType: "Велосипед", activityTypeImage: image ?? UIImage()),
-        ActivityTypeCellViewModel(activityType: "Бег", activityTypeImage: image ?? UIImage()),
-        ActivityTypeCellViewModel(activityType: "Ходьба", activityTypeImage: image ?? UIImage()),
         ActivityTypeCellViewModel(activityType: "Велосипед", activityTypeImage: image ?? UIImage()),
         ActivityTypeCellViewModel(activityType: "Бег", activityTypeImage: image ?? UIImage()),
         ActivityTypeCellViewModel(activityType: "Ходьба", activityTypeImage: image ?? UIImage())
@@ -77,16 +74,16 @@ class StartActivityViewController: UIViewController {
         mapView.userTrackingMode = .follow
         
         listOfActivitiesType.dataSource = self
+        listOfActivitiesType.delegate = self
         
         let nib = UINib(nibName: identifier, bundle: nil)
-        
         listOfActivitiesType.register(nib, forCellWithReuseIdentifier: identifier)
         
         commonInit()
     }
     
     private func commonInit() {
-        statesContainer.layer.cornerRadius = 25
+        startActivity.layer.cornerRadius = 25
         
         toStartLabel.text = "Погнали? :)"
         
@@ -140,7 +137,7 @@ extension StartActivityViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let activityTypeData = data[indexPath.row]
         
-        let dequeuedCell = listOfActivitiesType.dequeueReusableCell(withReuseIdentifier: "ActivityTypeCollectionViewCell", for: indexPath)
+        let dequeuedCell = listOfActivitiesType.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
         
         guard let upcastedCell = dequeuedCell as? ActivityTypeCollectionViewCell else {
             return UICollectionViewCell()
@@ -152,3 +149,18 @@ extension StartActivityViewController: UICollectionViewDataSource {
     }
 }
 
+// MARK: - UICollectionViewDelegate
+extension StartActivityViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? ActivityTypeCollectionViewCell {
+            cell.cardView.layer.borderWidth = 2
+            cell.cardView.layer.borderColor = UIColor(named: "ButtonBackgroundColor")?.cgColor
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? ActivityTypeCollectionViewCell {
+            cell.cardView.layer.borderWidth = 0
+        }
+    }
+}
