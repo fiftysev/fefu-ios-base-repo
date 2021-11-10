@@ -21,9 +21,7 @@ class ActivityTypeCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         
         self.backgroundColor = .clear
-        
         cardView.layer.cornerRadius = 14
-        
     }
     
     func bind(_ model: ActivityTypeCellViewModel) {

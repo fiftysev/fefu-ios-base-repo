@@ -18,6 +18,9 @@ class StartActivityViewController: UIViewController {
     [
         ActivityTypeCellViewModel(activityType: "Велосипед", activityTypeImage: image ?? UIImage()),
         ActivityTypeCellViewModel(activityType: "Бег", activityTypeImage: image ?? UIImage()),
+        ActivityTypeCellViewModel(activityType: "Ходьба", activityTypeImage: image ?? UIImage()),
+        ActivityTypeCellViewModel(activityType: "Велосипед", activityTypeImage: image ?? UIImage()),
+        ActivityTypeCellViewModel(activityType: "Бег", activityTypeImage: image ?? UIImage()),
         ActivityTypeCellViewModel(activityType: "Ходьба", activityTypeImage: image ?? UIImage())
     ]
     
@@ -74,7 +77,6 @@ class StartActivityViewController: UIViewController {
         mapView.userTrackingMode = .follow
         
         listOfActivitiesType.dataSource = self
-        listOfActivitiesType.delegate = self
         
         let nib = UINib(nibName: identifier, bundle: nil)
         
@@ -150,13 +152,3 @@ extension StartActivityViewController: UICollectionViewDataSource {
     }
 }
 
-// MARK: - UICollectionViewDelegate
-
-extension StartActivityViewController: UICollectionViewDelegate {
-    
-}
-
-// MARK: - UICollectionViewDelegateFlowLayout
-
-extension StartActivityViewController: UICollectionViewDelegateFlowLayout {
-}
