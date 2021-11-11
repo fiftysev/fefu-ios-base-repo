@@ -1,5 +1,6 @@
 
 import UIKit
+import CoreData
 
 // try to test so beautiful
 struct ActivitiesTableViewModel {
@@ -59,6 +60,19 @@ class ActivityViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         commonInit()
+        fetch()
+    }
+    
+    func fetch() {
+        let context = FEFUCoreDataContainer.instance.context
+        let activityRequest = CDActivity.fetchRequest()
+
+        do {
+            let raw = try context.fetch(activityRequest)
+            print(raw.last!.type, raw.last!.duration, String(raw.last!.distance), raw.last!.startTime, raw.last!.endTime)
+        } catch {
+            print(error)
+        }
     }
     
     private func commonInit() {

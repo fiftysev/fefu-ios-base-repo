@@ -30,6 +30,5 @@ class ActivityTypeCollectionViewCell: UICollectionViewCell {
     func bind(_ model: ActivityTypeCellViewModel) {
         activityTypeLabel.text = model.activityType
         activityImage.image = model.activityTypeImage
-        titleForManageState = model.titleForManageState
     }
 }

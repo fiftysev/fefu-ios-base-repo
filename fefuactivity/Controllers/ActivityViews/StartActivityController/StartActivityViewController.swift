@@ -1,10 +1,19 @@
 import UIKit
 import CoreLocation
+import CoreData
 import MapKit
 
 private let image = UIImage(named: "Background")
 
 private let identifier = "ActivityTypeCollectionViewCell"
+
+// items for collection view
+private let activitiesTypeData: [ActivityTypeCellViewModel] =
+[
+    ActivityTypeCellViewModel(activityType: "Велосипед", activityTypeImage: image ?? UIImage(), titleForManageState: "На велике"),
+    ActivityTypeCellViewModel(activityType: "Бег", activityTypeImage: image ?? UIImage(), titleForManageState: "Бежим"),
+    ActivityTypeCellViewModel(activityType: "Ходьба", activityTypeImage: image ?? UIImage(), titleForManageState: "Идем")
+]
 
 class StartActivityViewController: UIViewController {
     //MARK: - Set variables and outlets
@@ -26,25 +35,20 @@ class StartActivityViewController: UIViewController {
     @IBOutlet weak var typeOfActivityLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var timerLabel: UILabel!
-        
-    // items for collection view
-    private let activitiesTypeData: [ActivityTypeCellViewModel] =
-    [
-        ActivityTypeCellViewModel(activityType: "Велосипед", activityTypeImage: image ?? UIImage(), titleForManageState: "На велике"),
-        ActivityTypeCellViewModel(activityType: "Бег", activityTypeImage: image ?? UIImage(), titleForManageState: "Бежим"),
-        ActivityTypeCellViewModel(activityType: "Ходьба", activityTypeImage: image ?? UIImage(), titleForManageState: "Идем")
-    ]
     
-    private var trackingPaused: Bool = false
+    
     
     // save for delete old routes
+    private let coreDataContainer = FEFUCoreDataContainer.instance
     private var previousRouteSegment: MKPolyline?
-    private var currentUserActivityDistance: CLLocationDistance = CLLocationDistance()
-    private var startActivityDate: Date?
-    private var activityDuration: TimeInterval = TimeInterval()
     private var currentDuration: TimeInterval = TimeInterval()
     private var startValueForTimer: Date?
     private var timer: Timer?
+    
+    private var activityDistance: CLLocationDistance = CLLocationDistance()
+    private var activityDate: Date?
+    private var activityDuration: TimeInterval = TimeInterval()
+    private var activityType: String?
     
     private let locationManager: CLLocationManager = {
         let manager = CLLocationManager()
@@ -61,10 +65,10 @@ class StartActivityViewController: UIViewController {
             let region = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
             
             if oldValue != nil {
-                currentUserActivityDistance += userLocation.distance(from: oldValue!)
+                activityDistance += userLocation.distance(from: oldValue!)
             }
             
-            distanceLabel.text = String(format: "%.2f км", currentUserActivityDistance / 1000)
+            distanceLabel.text = String(format: "%.2f км", activityDistance / 1000)
             
             mapView.setRegion(region, animated: true)
             
@@ -96,6 +100,8 @@ class StartActivityViewController: UIViewController {
             mapView.addOverlay(route)
         }
     }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -149,7 +155,7 @@ class StartActivityViewController: UIViewController {
         startActivityStateView.isHidden = true
         manageActivityStateView.isHidden = false
         
-        startActivityDate = Date()
+        activityDate = Date()
         startValueForTimer = Date()
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         
@@ -175,6 +181,7 @@ class StartActivityViewController: UIViewController {
         sender.isSelected.toggle()
         if sender.isSelected {
             activityDuration += currentDuration
+            currentDuration = TimeInterval()
             timer?.invalidate()
             
             locationManager.stopUpdatingLocation()
@@ -187,8 +194,34 @@ class StartActivityViewController: UIViewController {
     }
     
     @IBAction func didFinishTracking(_ sender: FinishActivityButton) {
-        // TODO: - Save to CoreData
         locationManager.stopUpdatingLocation()
+        
+        let context = coreDataContainer.context
+        let activity = CDActivity(context: context)
+        
+        activityDuration += currentDuration
+        timer?.invalidate()
+        
+        let durationFormatter = DateComponentsFormatter()
+        durationFormatter.allowedUnits = [.hour, .minute, .second]
+        durationFormatter.zeroFormattingBehavior = .pad
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        
+        
+        let activityStartTime = dateFormatter.string(from: activityDate!)
+        let activityEndTime = dateFormatter.string(from: activityDate! + activityDuration)
+        let duration = durationFormatter.string(from: activityDuration)
+        
+        activity.type = activityType
+        activity.date = activityDate
+        activity.distance = activityDistance / 1000
+        activity.startTime = activityStartTime
+        activity.endTime = activityEndTime
+        activity.duration = duration
+        
+        coreDataContainer.saveContext()
     }
 }
 
@@ -211,13 +244,25 @@ extension StartActivityViewController: MKMapViewDelegate {
         if let polyline = overlay as? MKPolyline {
             let render = MKPolylineRenderer(polyline: polyline)
             
-            render.fillColor = .blue
-            render.strokeColor = .blue
+            render.fillColor = UIColor(named: "ButtonBackgroundColor")
+            render.strokeColor = UIColor(named: "ButtonBackgroundColor")
             render.lineWidth = 5
             
             return render
         }
         return MKOverlayRenderer(overlay: overlay)
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation {
+            let dequedView = mapView.dequeueReusableAnnotationView(withIdentifier: "user_icon")
+            
+            let view = dequedView ?? MKAnnotationView(annotation: annotation, reuseIdentifier: "user_icon")
+            
+            view.image = UIImage(named: "UserLocation")
+            return view
+        }
+        return nil
     }
 }
 
@@ -252,7 +297,7 @@ extension StartActivityViewController: UICollectionViewDelegate {
             cell.cardView.layer.borderWidth = 2
             cell.cardView.layer.borderColor = UIColor(named: "ButtonBackgroundColor")?.cgColor
             
-            typeOfActivityLabel.text = cell.titleForManageState
+            activityType = cell.activityTypeLabel.text
         }
     }
     
