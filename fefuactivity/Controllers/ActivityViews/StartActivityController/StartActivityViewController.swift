@@ -18,7 +18,7 @@ class StartActivityViewController: UIViewController {
     @IBOutlet weak var startActivityStateView: UIView!
     
     @IBOutlet weak var toStartLabel: UILabel!
-    @IBOutlet weak var startActivityButton: StartActivityButton!
+    @IBOutlet weak var startActivityButton: ActivityFEFUButton!
     @IBOutlet weak var listOfActivitiesType: UICollectionView!
     
     // state when user manage self activity tracking
@@ -26,7 +26,7 @@ class StartActivityViewController: UIViewController {
     @IBOutlet weak var typeOfActivityLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var timerLabel: UILabel!
-    
+        
     // items for collection view
     private let activitiesTypeData: [ActivityTypeCellViewModel] =
     [
@@ -35,10 +35,16 @@ class StartActivityViewController: UIViewController {
         ActivityTypeCellViewModel(activityType: "Ходьба", activityTypeImage: image ?? UIImage(), titleForManageState: "Идем")
     ]
     
+    private var trackingPaused: Bool = false
+    
     // save for delete old routes
     private var previousRouteSegment: MKPolyline?
-    
-    var currentDistance: CLLocationDistance = CLLocationDistance()
+    private var currentUserActivityDistance: CLLocationDistance = CLLocationDistance()
+    private var startActivityDate: Date?
+    private var activityDuration: TimeInterval = TimeInterval()
+    private var currentDuration: TimeInterval = TimeInterval()
+    private var startValueForTimer: Date?
+    private var timer: Timer?
     
     private let locationManager: CLLocationManager = {
         let manager = CLLocationManager()
@@ -55,11 +61,10 @@ class StartActivityViewController: UIViewController {
             let region = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
             
             if oldValue != nil {
-                currentDistance += userLocation.distance(from: oldValue!)
+                currentUserActivityDistance += userLocation.distance(from: oldValue!)
             }
             
-        
-            distanceLabel.text = String(format: "%.2f км", currentDistance / 1000)
+            distanceLabel.text = String(format: "%.2f км", currentUserActivityDistance / 1000)
             
             mapView.setRegion(region, animated: true)
             
@@ -136,6 +141,7 @@ class StartActivityViewController: UIViewController {
         
         typeOfActivityLabel.text = "Активность"
         distanceLabel.text = "0.00 км"
+        timerLabel.text = "00:00:00"
         manageActivityStateView.isHidden = true
     }
     
@@ -143,21 +149,45 @@ class StartActivityViewController: UIViewController {
         startActivityStateView.isHidden = true
         manageActivityStateView.isHidden = false
         
+        startActivityDate = Date()
+        startValueForTimer = Date()
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        
         locationManager.startUpdatingLocation()
+    }
+    
+    // formatting time for label
+    @objc private func updateTimer() {
+        let currentTime = Date().timeIntervalSince(startValueForTimer!)
+        
+        currentDuration = currentTime
+        let timeFormatter = DateComponentsFormatter()
+        timeFormatter.allowedUnits = [.hour, .minute, .second]
+        timeFormatter.zeroFormattingBehavior = .pad
+        
+        timerLabel.text = timeFormatter.string(from: currentTime + activityDuration)
     }
     
     @IBAction func didPauseTracking(_ sender: PauseToggleButton) {
         userLocationsHistory = []
         userLocation = nil
+        
         sender.isSelected.toggle()
         if sender.isSelected {
+            activityDuration += currentDuration
+            timer?.invalidate()
+            
             locationManager.stopUpdatingLocation()
         } else {
+            startValueForTimer = Date()
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+            
             locationManager.startUpdatingLocation()
         }
     }
     
     @IBAction func didFinishTracking(_ sender: FinishActivityButton) {
+        // TODO: - Save to CoreData
         locationManager.stopUpdatingLocation()
     }
 }
@@ -187,7 +217,6 @@ extension StartActivityViewController: MKMapViewDelegate {
             
             return render
         }
-        
         return MKOverlayRenderer(overlay: overlay)
     }
 }
@@ -232,5 +261,4 @@ extension StartActivityViewController: UICollectionViewDelegate {
             cell.cardView.layer.borderWidth = 0
         }
     }
-    
 }

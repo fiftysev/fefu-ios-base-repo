@@ -100,7 +100,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vHv-Sp-WYU" userLabel="Distance">
-                                    <rect key="frame" x="24" y="69" width="113" height="35"/>
+                                    <rect key="frame" x="24" y="69" width="57" height="35"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="35" id="dMY-KJ-4rl"/>
                                     </constraints>
@@ -149,7 +149,6 @@
                                 <constraint firstItem="Toq-qK-Mij" firstAttribute="top" secondItem="vHv-Sp-WYU" secondAttribute="bottom" constant="40" id="Bif-lI-ySa"/>
                                 <constraint firstAttribute="trailing" secondItem="czk-J1-27K" secondAttribute="trailing" constant="186" id="H0A-sv-DPO"/>
                                 <constraint firstItem="iXV-TX-p8f" firstAttribute="top" secondItem="UeD-nS-tf3" secondAttribute="top" constant="67" id="JV7-B9-iE1"/>
-                                <constraint firstItem="iXV-TX-p8f" firstAttribute="leading" secondItem="vHv-Sp-WYU" secondAttribute="trailing" constant="196" id="Mdp-dz-Wb3"/>
                                 <constraint firstItem="Dmr-vB-3QL" firstAttribute="top" secondItem="iXV-TX-p8f" secondAttribute="bottom" constant="40" id="Qmk-0B-ZcE"/>
                                 <constraint firstItem="Dmr-vB-3QL" firstAttribute="leading" secondItem="Toq-qK-Mij" secondAttribute="trailing" constant="16" id="Sac-Xr-Rh6"/>
                                 <constraint firstItem="czk-J1-27K" firstAttribute="top" secondItem="UeD-nS-tf3" secondAttribute="top" constant="24" id="VPA-6P-OOa"/>
