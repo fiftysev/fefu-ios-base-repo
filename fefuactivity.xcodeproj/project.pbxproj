@@ -32,6 +32,8 @@
 		B452D057270DB88800FA4262 /* SignFEFUTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B452D056270DB88800FA4262 /* SignFEFUTextField.swift */; };
 		B45FCBFA273B87EA00C8226E /* ActivityTypeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45FCBF8273B87EA00C8226E /* ActivityTypeCollectionViewCell.swift */; };
 		B45FCBFB273B87EA00C8226E /* ActivityTypeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B45FCBF9273B87EA00C8226E /* ActivityTypeCollectionViewCell.xib */; };
+		B489D0F1273D0F5E007D9516 /* PauseToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B489D0F0273D0F5E007D9516 /* PauseToggleButton.swift */; };
+		B489D0F3273D100F007D9516 /* FinishActivityButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B489D0F2273D100F007D9516 /* FinishActivityButton.swift */; };
 		B490BB98270ACED100F11E64 /* ActivityFEFUButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B490BB97270ACED100F11E64 /* ActivityFEFUButton.swift */; };
 		B4DC15E8273A89DF00CB6BE3 /* StartActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DC15E6273A89DF00CB6BE3 /* StartActivityViewController.swift */; };
 		B4DC15E9273A89DF00CB6BE3 /* StartActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4DC15E7273A89DF00CB6BE3 /* StartActivityViewController.xib */; };
@@ -65,6 +67,8 @@
 		B452D056270DB88800FA4262 /* SignFEFUTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignFEFUTextField.swift; sourceTree = "<group>"; };
 		B45FCBF8273B87EA00C8226E /* ActivityTypeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTypeCollectionViewCell.swift; sourceTree = "<group>"; };
 		B45FCBF9273B87EA00C8226E /* ActivityTypeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityTypeCollectionViewCell.xib; sourceTree = "<group>"; };
+		B489D0F0273D0F5E007D9516 /* PauseToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseToggleButton.swift; sourceTree = "<group>"; };
+		B489D0F2273D100F007D9516 /* FinishActivityButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishActivityButton.swift; sourceTree = "<group>"; };
 		B490BB97270ACED100F11E64 /* ActivityFEFUButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFEFUButton.swift; sourceTree = "<group>"; };
 		B4DC15E6273A89DF00CB6BE3 /* StartActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartActivityViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		B4DC15E7273A89DF00CB6BE3 /* StartActivityViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartActivityViewController.xib; sourceTree = "<group>"; };
@@ -181,6 +185,8 @@
 			children = (
 				B490BB97270ACED100F11E64 /* ActivityFEFUButton.swift */,
 				B401A786271D6182003D9211 /* StartActivityButton.swift */,
+				B489D0F0273D0F5E007D9516 /* PauseToggleButton.swift */,
+				B489D0F2273D100F007D9516 /* FinishActivityButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -331,11 +337,13 @@
 				B401A787271D6182003D9211 /* StartActivityButton.swift in Sources */,
 				B401A780271D5D18003D9211 /* ActivityViewController.swift in Sources */,
 				B452D057270DB88800FA4262 /* SignFEFUTextField.swift in Sources */,
+				B489D0F3273D100F007D9516 /* FinishActivityButton.swift in Sources */,
 				1DE4E5C5270A5CCE004A30CA /* AppDelegate.swift in Sources */,
 				B43952FE271DBB58002B8DD4 /* TabsViewController.swift in Sources */,
 				B4DC15E8273A89DF00CB6BE3 /* StartActivityViewController.swift in Sources */,
 				B401A784271D5D27003D9211 /* ProfileViewController.swift in Sources */,
 				B433AEC1270ED759004A6CB1 /* SignInController.swift in Sources */,
+				B489D0F1273D0F5E007D9516 /* PauseToggleButton.swift in Sources */,
 				B490BB98270ACED100F11E64 /* ActivityFEFUButton.swift in Sources */,
 				B45FCBFA273B87EA00C8226E /* ActivityTypeCollectionViewCell.swift in Sources */,
 				1DE4E5C7270A5CCE004A30CA /* SceneDelegate.swift in Sources */,

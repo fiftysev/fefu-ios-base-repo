@@ -26,8 +26,8 @@ class StartActivityViewController: UIViewController {
     @IBOutlet weak var typeOfActivityLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var timerLabel: UILabel!
-    @IBOutlet weak var pauseOrResumeButton: UIButton!
-    @IBOutlet weak var finishButton: UIButton!
+    @IBOutlet weak var pauseOrResumeButton: PauseToggleButton!
+    @IBOutlet weak var finishButton: FinishActivityButton!
     
     // items for collection view
     private let activitiesTypeData: [ActivityTypeCellViewModel] =
@@ -65,8 +65,14 @@ class StartActivityViewController: UIViewController {
         didSet {
             let coordinates = userLocationsHistory.map { $0.coordinate }
             
-            if let previousRoute = previousRouteSegment {
+            // if user paused tracking, previous polyline not deleted
+            if let previousRoute = previousRouteSegment, !userLocationsHistory.isEmpty {
                 mapView.removeOverlay(previousRoute as MKOverlay)
+                previousRouteSegment = nil
+            }
+            
+            // if when user click pause we delete all of previous coordinates
+            if userLocationsHistory.isEmpty {
                 previousRouteSegment = nil
             }
             
@@ -107,25 +113,20 @@ class StartActivityViewController: UIViewController {
     }
     
     private func activityStateInit() {
+        // i think that i can set cornerRadius to container, but in design state views have different height, and i need2do this
         startActivityStateView.layer.cornerRadius = 25
+        startActivityStateView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         startActivityStateView.isHidden = false
+        
         toStartLabel.text = "Погнали? :)"
+        
         startActivityButton.setTitle("Старт", for: .normal)
     }
     
     private func manageStateInit() {
         manageActivityStateView.layer.cornerRadius = 25
+        manageActivityStateView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         manageActivityStateView.isHidden = true
-        
-        pauseOrResumeButton.setTitle("", for: .normal)
-        pauseOrResumeButton.layer.cornerRadius = 50
-        pauseOrResumeButton.backgroundColor = .white
-        pauseOrResumeButton.setImage(UIImage(systemName: "pause"), for: .normal)
-                
-        finishButton.setTitle("", for: .normal)
-        finishButton.layer.cornerRadius = 50
-        finishButton.backgroundColor = .white
-        finishButton.setImage(UIImage(systemName: "xmark"), for: .normal)
     }
     
     @IBAction func didStartTracking(_ sender: Any) {
@@ -135,12 +136,17 @@ class StartActivityViewController: UIViewController {
         locationManager.startUpdatingLocation()
     }
     
-    @IBAction func didPauseTracking(_ sender: Any) {
+    @IBAction func didPauseTracking(_ sender: PauseToggleButton) {
         userLocationsHistory = []
-        locationManager.stopUpdatingLocation()
+        sender.isSelected.toggle()
+        if sender.isSelected {
+            locationManager.stopUpdatingLocation()
+        } else {
+            locationManager.startUpdatingLocation()
+        }
     }
     
-    @IBAction func didFinishTracking(_ sender: Any) {
+    @IBAction func didFinishTracking(_ sender: UIButton) {
         locationManager.stopUpdatingLocation()
     }
 }

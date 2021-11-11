@@ -119,7 +119,7 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Toq-qK-Mij" userLabel="Pause/Resume">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Toq-qK-Mij" userLabel="Pause/Resume" customClass="PauseToggleButton" customModule="fefuactivity" customModuleProvider="target">
                                     <rect key="frame" x="141" y="144" width="56" height="56"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="56" id="Fmn-XW-kDK"/>
@@ -131,7 +131,7 @@
                                         <action selector="didPauseTracking:" destination="-1" eventType="touchUpInside" id="C3K-5c-Zzm"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dmr-vB-3QL" userLabel="Finish">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dmr-vB-3QL" userLabel="Finish" customClass="FinishActivityButton" customModule="fefuactivity" customModuleProvider="target">
                                     <rect key="frame" x="213" y="142" width="56" height="56"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="56" id="HRN-qi-vMK"/>
@@ -147,7 +147,6 @@
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstItem="czk-J1-27K" firstAttribute="leading" secondItem="UeD-nS-tf3" secondAttribute="leading" constant="24" id="0Gx-fu-h8t"/>
-                                <constraint firstAttribute="trailing" secondItem="Dmr-vB-3QL" secondAttribute="trailing" constant="145" id="7jm-tn-LLh"/>
                                 <constraint firstAttribute="trailing" secondItem="iXV-TX-p8f" secondAttribute="trailing" constant="24" id="BW2-iB-z8i"/>
                                 <constraint firstItem="Toq-qK-Mij" firstAttribute="top" secondItem="vHv-Sp-WYU" secondAttribute="bottom" constant="40" id="Bif-lI-ySa"/>
                                 <constraint firstAttribute="trailing" secondItem="czk-J1-27K" secondAttribute="trailing" constant="186" id="H0A-sv-DPO"/>
