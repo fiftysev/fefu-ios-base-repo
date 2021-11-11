@@ -18,7 +18,7 @@ class StartActivityViewController: UIViewController {
     @IBOutlet weak var startActivityStateView: UIView!
     
     @IBOutlet weak var toStartLabel: UILabel!
-    @IBOutlet weak var startActivityButton: ActivityFEFUButton!
+    @IBOutlet weak var startActivityButton: StartActivityButton!
     @IBOutlet weak var listOfActivitiesType: UICollectionView!
     
     // state when user manage self activity tracking
@@ -26,8 +26,6 @@ class StartActivityViewController: UIViewController {
     @IBOutlet weak var typeOfActivityLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var timerLabel: UILabel!
-    @IBOutlet weak var pauseOrResumeButton: PauseToggleButton!
-    @IBOutlet weak var finishButton: FinishActivityButton!
     
     // items for collection view
     private let activitiesTypeData: [ActivityTypeCellViewModel] =
@@ -39,6 +37,8 @@ class StartActivityViewController: UIViewController {
     
     // save for delete old routes
     private var previousRouteSegment: MKPolyline?
+    
+    var currentDistance: CLLocationDistance = CLLocationDistance()
     
     private let locationManager: CLLocationManager = {
         let manager = CLLocationManager()
@@ -53,6 +53,13 @@ class StartActivityViewController: UIViewController {
                 return
             }
             let region = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
+            
+            if oldValue != nil {
+                currentDistance += userLocation.distance(from: oldValue!)
+            }
+            
+        
+            distanceLabel.text = String(format: "%.2f км", currentDistance / 1000)
             
             mapView.setRegion(region, animated: true)
             
@@ -126,6 +133,9 @@ class StartActivityViewController: UIViewController {
     private func manageStateInit() {
         manageActivityStateView.layer.cornerRadius = 25
         manageActivityStateView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        
+        typeOfActivityLabel.text = "Активность"
+        distanceLabel.text = "0.00 км"
         manageActivityStateView.isHidden = true
     }
     
@@ -138,6 +148,7 @@ class StartActivityViewController: UIViewController {
     
     @IBAction func didPauseTracking(_ sender: PauseToggleButton) {
         userLocationsHistory = []
+        userLocation = nil
         sender.isSelected.toggle()
         if sender.isSelected {
             locationManager.stopUpdatingLocation()
@@ -146,7 +157,7 @@ class StartActivityViewController: UIViewController {
         }
     }
     
-    @IBAction func didFinishTracking(_ sender: UIButton) {
+    @IBAction func didFinishTracking(_ sender: FinishActivityButton) {
         locationManager.stopUpdatingLocation()
     }
 }
@@ -207,7 +218,8 @@ extension StartActivityViewController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 extension StartActivityViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let cell = collectionView.cellForItem(at: indexPath) as? ActivityTypeCollectionViewCell {
+        if let cell = collectionView.cellForItem(at: indexPath) as?
+            ActivityTypeCollectionViewCell {
             cell.cardView.layer.borderWidth = 2
             cell.cardView.layer.borderColor = UIColor(named: "ButtonBackgroundColor")?.cgColor
             

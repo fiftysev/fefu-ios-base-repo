@@ -12,11 +12,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StartActivityViewController" customModule="fefuactivity" customModuleProvider="target">
             <connections>
                 <outlet property="distanceLabel" destination="vHv-Sp-WYU" id="bo1-rI-fSV"/>
-                <outlet property="finishButton" destination="Dmr-vB-3QL" id="QmL-pn-iQk"/>
                 <outlet property="listOfActivitiesType" destination="WsQ-pl-Vk5" id="W6w-7Z-D4D"/>
                 <outlet property="manageActivityStateView" destination="UeD-nS-tf3" id="ddz-fH-gFc"/>
                 <outlet property="mapView" destination="ol2-RC-88z" id="iEQ-F6-6xg"/>
-                <outlet property="pauseOrResumeButton" destination="Toq-qK-Mij" id="ZGF-r6-8L0"/>
                 <outlet property="startActivityButton" destination="A6c-yY-bhb" id="23q-Tv-fGF"/>
                 <outlet property="startActivityStateView" destination="kZk-VQ-uk1" id="1Ge-xw-LOg"/>
                 <outlet property="statesContainer" destination="Ruf-Wy-kNg" id="Kd2-e2-0tE"/>
