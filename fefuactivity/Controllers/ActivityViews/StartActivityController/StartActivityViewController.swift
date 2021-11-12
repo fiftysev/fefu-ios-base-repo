@@ -201,27 +201,22 @@ class StartActivityViewController: UIViewController {
         
         activityDuration += currentDuration
         timer?.invalidate()
-        
-        let durationFormatter = DateComponentsFormatter()
-        durationFormatter.allowedUnits = [.hour, .minute, .second]
-        durationFormatter.zeroFormattingBehavior = .pad
-        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
         
-        
         let activityStartTime = dateFormatter.string(from: activityDate!)
         let activityEndTime = dateFormatter.string(from: activityDate! + activityDuration)
-        let duration = durationFormatter.string(from: activityDuration)
         
         activity.type = activityType
         activity.date = activityDate
-        activity.distance = activityDistance / 1000
+        activity.distance = activityDistance
         activity.startTime = activityStartTime
         activity.endTime = activityEndTime
-        activity.duration = duration
+        activity.duration = activityDuration
         
         coreDataContainer.saveContext()
+        
+        navigationController?.popViewController(animated: true)
     }
 }
 
@@ -297,7 +292,8 @@ extension StartActivityViewController: UICollectionViewDelegate {
             cell.cardView.layer.borderWidth = 2
             cell.cardView.layer.borderColor = UIColor(named: "ButtonBackgroundColor")?.cgColor
             
-            activityType = cell.activityTypeLabel.text
+            activityType = cell.activityType
+            typeOfActivityLabel.text = activityType
         }
     }
     

@@ -2,11 +2,9 @@ import UIKit
 
 class ActivityDetailsViewController: UIViewController {
     
-    var model: ActivityTableViewCellViewModel? = nil
-    
     @IBOutlet weak var startButton: ActivityFEFUButton!
     @IBOutlet weak var distanceLabel: UILabel!
-    @IBOutlet weak var timeAgoLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var activityDurationLabel: UILabel!
     @IBOutlet weak var startEndTimeLabel: UILabel!
     @IBOutlet weak var activityTitleLabel: UILabel!
@@ -20,7 +18,6 @@ class ActivityDetailsViewController: UIViewController {
         super.viewDidLoad()
         startButton.setTitle("Старт", for: .normal)
         startButton.titleLabel?.font = .boldSystemFont(ofSize: 16)
-        commonInit()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -29,15 +26,21 @@ class ActivityDetailsViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: nil, action: nil)
     }
     
-    private func commonInit() {
-        distanceLabel.text = model?.distance
-        timeAgoLabel.text = model?.timeAgo
-        activityDurationLabel.text = model?.duration
-        startEndTimeLabel.text = "Старт: \(model?.startTime ?? "нет данных") • Финиш: \(model?.endTime ?? "нет данных")"
-        activityTitleLabel.text = model?.activityTitle
-        secondTimeAgoLabel.text = model?.timeAgo
-        iconActivity.image = model?.icon
+    func bind(_ model: ActivityTableViewCellViewModel) {
+        let distanceStr = String(format: "%.2f км", model.distance / 1000)
+        distanceLabel.text = distanceStr
+    
+        let durationFormatter = DateComponentsFormatter()
+        durationFormatter.allowedUnits = [.hour, .minute, .second]
+        durationFormatter.zeroFormattingBehavior = .pad
+        activityDurationLabel.text = durationFormatter.string(from: model.duration)
         
-        self.title = model?.activityTitle
+        activityTitleLabel.text = model.activityType
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        
+        dateLabel.text = dateFormatter.string(from: model.startDate)
+        iconActivity.image = model.icon
     }
 }

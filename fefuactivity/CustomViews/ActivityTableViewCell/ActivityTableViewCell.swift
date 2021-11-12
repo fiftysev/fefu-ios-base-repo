@@ -1,10 +1,10 @@
 import UIKit
 
 struct ActivityTableViewCellViewModel {
-    let distance: String
-    let duration: String
-    let activityTitle: String
-    let timeAgo: String
+    let distance: Double
+    let duration: Double
+    let activityType: String
+    let startDate: Date
     let icon: UIImage
     let startTime: String
     let endTime: String
@@ -17,7 +17,7 @@ class ActivityTableViewCell: UITableViewCell {
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var activityTitleLabel: UILabel!
-    @IBOutlet weak var timeAgoLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var iconView: UIImageView!
     
     override func awakeFromNib() {
@@ -33,10 +33,20 @@ class ActivityTableViewCell: UITableViewCell {
     }
     
     func bind(_ model: ActivityTableViewCellViewModel) {
-        distanceLabel.text = model.distance
-        durationLabel.text = model.duration
-        activityTitleLabel.text = model.activityTitle
-        timeAgoLabel.text = model.timeAgo
+        let distanceStr = String(format: "%.2f км", model.distance / 1000)
+        distanceLabel.text = distanceStr
+    
+        let durationFormatter = DateComponentsFormatter()
+        durationFormatter.allowedUnits = [.hour, .minute, .second]
+        durationFormatter.zeroFormattingBehavior = .pad
+        durationLabel.text = durationFormatter.string(from: model.duration)
+        
+        activityTitleLabel.text = model.activityType
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        
+        dateLabel.text = dateFormatter.string(from: model.startDate)
         iconView.image = model.icon
     }
 
