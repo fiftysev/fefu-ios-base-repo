@@ -1,6 +1,7 @@
 import UIKit
 
 class ActivityDetailsViewController: UIViewController {
+    var model: ActivityTableViewCellViewModel?
     
     @IBOutlet weak var startButton: ActivityFEFUButton!
     @IBOutlet weak var distanceLabel: UILabel!
@@ -22,6 +23,8 @@ class ActivityDetailsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        bind(model!)
         navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: nil, action: nil)
     }
@@ -35,12 +38,22 @@ class ActivityDetailsViewController: UIViewController {
         durationFormatter.zeroFormattingBehavior = .pad
         activityDurationLabel.text = durationFormatter.string(from: model.duration)
         
+        startEndTimeLabel.text = "Cтарт: \(model.startTime) Финиш: \(model.endTime)"
+        
         activityTitleLabel.text = model.activityType
+        self.title = model.activityType
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         
         dateLabel.text = dateFormatter.string(from: model.startDate)
+        secondTimeAgoLabel.text = dateFormatter.string(from: model.startDate)
         iconActivity.image = model.icon
+    }
+    
+    @IBAction func didStartTracking(_ sender: Any) {
+        let startActivityController = StartActivityViewController(nibName: "StartActivityViewController", bundle: nil)
+        
+        navigationController?.pushViewController(startActivityController, animated: true)
     }
 }

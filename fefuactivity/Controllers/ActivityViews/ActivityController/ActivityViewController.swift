@@ -22,7 +22,12 @@ class ActivityViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         commonInit()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         fetch()
+        self.listOfActivities.reloadData()
     }
     
     private func fetch() {
@@ -103,7 +108,7 @@ extension ActivityViewController: UITableViewDelegate {
         let detailsView = ActivityDetailsViewController(nibName: "ActivityDetailsViewController", bundle: nil)
 
         let activity = self.data[indexPath.section].activities[indexPath.row]
-        detailsView.bind(activity)
+        detailsView.model = activity
         
         navigationController?.pushViewController(detailsView, animated: true)
     }

@@ -174,15 +174,15 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="ol2-RC-88z" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="18W-A3-edf"/>
                 <constraint firstItem="ol2-RC-88z" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="8GX-Zq-qWY"/>
                 <constraint firstItem="Ruf-Wy-kNg" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="DpZ-yx-9KF"/>
                 <constraint firstItem="ol2-RC-88z" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Hwh-Vt-HYW"/>
                 <constraint firstItem="Ruf-Wy-kNg" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="bAm-ws-fWz"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Ruf-Wy-kNg" secondAttribute="trailing" id="iyo-zk-SVm"/>
                 <constraint firstItem="ol2-RC-88z" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="nSx-Ee-LNn"/>
-                <constraint firstItem="ol2-RC-88z" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="v8c-Fq-SDq"/>
             </constraints>
-            <point key="canvasLocation" x="139" y="88"/>
+            <point key="canvasLocation" x="137.68115942028987" y="87.723214285714278"/>
         </view>
     </objects>
     <resources>
