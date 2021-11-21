@@ -1,53 +1,16 @@
 
 import UIKit
+import CoreData
 
 // try to test so beautiful
 struct ActivitiesTableViewModel {
-    let date: String
+    let date: Date
     let activities: [ActivityTableViewCellViewModel]
 }
 
-
-
 class ActivityViewController: UIViewController {
     
-    private let data: [ActivitiesTableViewModel] = {
-        let yesterdayActivities: [ActivityTableViewCellViewModel] = [
-            ActivityTableViewCellViewModel(distance: "14.32 км",
-                                           duration: "2 часа 46 минут",
-                                           activityTitle: "Велосипед",
-                                           timeAgo: "14 часов назад",
-                                           icon: UIImage(systemName: "bicycle.circle.fill") ?? UIImage(),
-                                           startTime: "14:49",
-                                           endTime: "16:31"
-                                          )
-        ]
-        
-        let mayActivities: [ActivityTableViewCellViewModel] = [
-            ActivityTableViewCellViewModel(distance: "14.32 км",
-                                           duration: "2 часа 46 минут",
-                                           activityTitle: "Велосипед",
-                                           timeAgo: "14 часов назад",
-                                           icon: UIImage(systemName: "bicycle.circle.fill") ?? UIImage(),
-                                           startTime: "14:49",
-                                           endTime: "16:31"
-                                          ),
-            ActivityTableViewCellViewModel(distance: "2 км",
-                                           duration: "15 минут",
-                                           activityTitle: "Бег",
-                                           timeAgo: "7 дней назад",
-                                           icon: UIImage(systemName: "figure.walk.circle.fill") ?? UIImage(),
-                                           startTime: "12:15",
-                                           endTime: "12:30"
-                                          )
-        ]
-        
-        return [
-            ActivitiesTableViewModel(date: "Вчера", activities: yesterdayActivities),
-            ActivitiesTableViewModel(date: "Май 22 года", activities: mayActivities)
-        ]
-    }()
-    
+    private var data: [ActivitiesTableViewModel] = [ActivitiesTableViewModel]()
     
     @IBOutlet weak var startButton: ActivityFEFUButton!
     @IBOutlet weak var emptyStateTitle: UILabel!
@@ -59,6 +22,51 @@ class ActivityViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         commonInit()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetch()
+        self.listOfActivities.reloadData()
+    }
+    
+    private func fetch() {
+        let context = FEFUCoreDataContainer.instance.context
+        
+        let request = CDActivity.fetchRequest()
+        
+        do {
+            let rawActivities = try context.fetch(request)
+            let activitiesViewModels: [ActivityTableViewCellViewModel] = rawActivities.map { activity in
+                let image = UIImage(systemName: "bicycle.circle.fill") ?? UIImage()
+                return ActivityTableViewCellViewModel(distance: activity.distance,
+                                                      duration: activity.duration,
+                                                      activityType: activity.type ?? "",
+                                                      startDate: activity.date ?? Date(),
+                                                      icon: image,
+                                                      startTime: activity.startTime ?? "",
+                                                      endTime: activity.endTime ?? "")
+            }
+            
+            let groupedActivitiesByDate = Dictionary(grouping: activitiesViewModels) { activityVM in
+                return createDateComponents(activityVM.startDate)
+            }
+            
+            self.data = groupedActivitiesByDate.map { (key, values) in
+                return ActivitiesTableViewModel(date: key, activities: values)
+            }
+            
+
+        } catch {
+            print(error)
+        }
+        
+    }
+    
+    private func createDateComponents(_ activityDate: Date) -> Date {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year, .month, .day], from: activityDate)
+        return calendar.date(from: components) ?? Date()
     }
     
     private func commonInit() {
@@ -79,13 +87,14 @@ class ActivityViewController: UIViewController {
         listOfActivities.separatorStyle = .none
         listOfActivities.backgroundColor = .clear
         
-        listOfActivities.isHidden = true
+        emptyStateView.isHidden = self.data.isEmpty
+        listOfActivities.isHidden = !self.data.isEmpty
     }
     
-    
-    @IBAction func didExitEmptyState(_ sender: Any) {
-        emptyStateView.isHidden = true
-        listOfActivities.isHidden = false
+    @IBAction func didStartActivity(_ sender: Any) {
+        let startActivityController = StartActivityViewController(nibName: "StartActivityViewController", bundle: nil)
+        
+        navigationController?.pushViewController(startActivityController, animated: true)
     }
 }
 
@@ -98,7 +107,8 @@ extension ActivityViewController: UITableViewDelegate {
         
         let detailsView = ActivityDetailsViewController(nibName: "ActivityDetailsViewController", bundle: nil)
 
-        detailsView.model = self.data[indexPath.section].activities[indexPath.row]
+        let activity = self.data[indexPath.section].activities[indexPath.row]
+        detailsView.model = activity
         
         navigationController?.pushViewController(detailsView, animated: true)
     }
@@ -119,7 +129,13 @@ extension ActivityViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = UILabel()
         header.font = .boldSystemFont(ofSize: 20)
-        header.text = data[section].date
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        let date = data[section].date
+        let sectionHeader = dateFormatter.string(from: date)
+        
+        header.text = sectionHeader
         return header
     }
     
