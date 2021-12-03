@@ -1,10 +1,10 @@
 import UIKit
 
-struct ActivityTableViewCellViewModel {
-    let distance: Double
-    let duration: Double
+struct ActivityViewModel {
+    let distance: String
+    let duration: String
     let activityType: String
-    let startDate: Date
+    let startDate: String
     let icon: UIImage
     let startTime: String
     let endTime: String
@@ -32,23 +32,13 @@ class ActivityTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func bind(_ model: ActivityTableViewCellViewModel) {
-        let distanceStr = String(format: "%.2f км", model.distance / 1000)
-        distanceLabel.text = distanceStr
-    
-        let durationFormatter = DateComponentsFormatter()
-        durationFormatter.allowedUnits = [.hour, .minute, .second]
-        durationFormatter.zeroFormattingBehavior = .pad
-        durationLabel.text = durationFormatter.string(from: model.duration)
-        
+    func bind(_ model: ActivityViewModel) {
+        distanceLabel.text = model.distance
+        durationLabel.text = model.duration
         activityTitleLabel.text = model.activityType
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        
-        dateLabel.text = dateFormatter.string(from: model.startDate)
+        dateLabel.text = model.startDate
         iconView.image = model.icon
     }
-
+    
     
 }

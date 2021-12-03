@@ -1,7 +1,7 @@
 import UIKit
 
 class ActivityDetailsViewController: UIViewController {
-    var model: ActivityTableViewCellViewModel?
+    var model: ActivityViewModel?
     
     @IBOutlet weak var startButton: ActivityFEFUButton!
     @IBOutlet weak var distanceLabel: UILabel!
@@ -29,25 +29,18 @@ class ActivityDetailsViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: nil, action: nil)
     }
     
-    func bind(_ model: ActivityTableViewCellViewModel) {
-        let distanceStr = String(format: "%.2f км", model.distance / 1000)
-        distanceLabel.text = distanceStr
-    
-        let durationFormatter = DateComponentsFormatter()
-        durationFormatter.allowedUnits = [.hour, .minute, .second]
-        durationFormatter.zeroFormattingBehavior = .pad
-        activityDurationLabel.text = durationFormatter.string(from: model.duration)
+    func bind(_ model: ActivityViewModel) {
+        distanceLabel.text = model.distance
+        
+        activityDurationLabel.text = model.duration
         
         startEndTimeLabel.text = "Cтарт: \(model.startTime) Финиш: \(model.endTime)"
         
         activityTitleLabel.text = model.activityType
         self.title = model.activityType
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        
-        dateLabel.text = dateFormatter.string(from: model.startDate)
-        secondTimeAgoLabel.text = dateFormatter.string(from: model.startDate)
+        dateLabel.text = model.startDate
+        secondTimeAgoLabel.text = model.startDate
         iconActivity.image = model.icon
     }
     

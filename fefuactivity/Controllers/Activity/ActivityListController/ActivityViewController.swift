@@ -4,8 +4,8 @@ import CoreData
 
 // try to test so beautiful
 struct ActivitiesTableViewModel {
-    let date: Date
-    let activities: [ActivityTableViewCellViewModel]
+    let date: String
+    let activities: [ActivityViewModel]
 }
 
 class ActivityViewController: UIViewController {
@@ -19,6 +19,8 @@ class ActivityViewController: UIViewController {
     
     @IBOutlet weak var listOfActivities: UITableView!
     
+    private let CDController: CDActivityController = CDActivityController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         commonInit()
@@ -31,32 +33,29 @@ class ActivityViewController: UIViewController {
     }
     
     private func fetch() {
-        let context = FEFUCoreDataContainer.instance.context
-        
-        let request = CDActivity.fetchRequest()
-        
         do {
-            let rawActivities = try context.fetch(request)
-            let activitiesViewModels: [ActivityTableViewCellViewModel] = rawActivities.map { activity in
-                let image = UIImage(systemName: "bicycle.circle.fill") ?? UIImage()
-                return ActivityTableViewCellViewModel(distance: activity.distance,
-                                                      duration: activity.duration,
-                                                      activityType: activity.type ?? "",
-                                                      startDate: activity.date ?? Date(),
-                                                      icon: image,
-                                                      startTime: activity.startTime ?? "",
-                                                      endTime: activity.endTime ?? "")
+            let rawActivities = try CDController.fetch()
+            let activitiesViewModels: [ActivityViewModel] = rawActivities.map { activity in
+            let image = UIImage(systemName: "bicycle.circle.fill") ?? UIImage()
+                
+            return ActivityViewModel(distance: activity.distance ?? "",
+                                         duration: activity.duration ?? "",
+                                         activityType: activity.type ?? "",
+                                         startDate: activity.date ?? "",
+                                         icon: image,
+                                         startTime: activity.startTime ?? "",
+                                         endTime: activity.endTime ?? "")
             }
             
             let groupedActivitiesByDate = Dictionary(grouping: activitiesViewModels) { activityVM in
-                return createDateComponents(activityVM.startDate)
+                return activityVM.startDate
             }
             
             self.data = groupedActivitiesByDate.map { (key, values) in
                 return ActivitiesTableViewModel(date: key, activities: values)
             }
             
-
+            
         } catch {
             print(error)
         }
@@ -106,7 +105,7 @@ extension ActivityViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let detailsView = ActivityDetailsViewController(nibName: "ActivityDetailsViewController", bundle: nil)
-
+        
         let activity = self.data[indexPath.section].activities[indexPath.row]
         detailsView.model = activity
         
@@ -130,12 +129,7 @@ extension ActivityViewController: UITableViewDataSource {
         let header = UILabel()
         header.font = .boldSystemFont(ofSize: 20)
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        let date = data[section].date
-        let sectionHeader = dateFormatter.string(from: date)
-        
-        header.text = sectionHeader
+        header.text = data[section].date
         return header
     }
     

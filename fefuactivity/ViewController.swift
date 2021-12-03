@@ -25,12 +25,12 @@ class ViewController: UIViewController {
 
 
     @IBAction func signUpButtonTap(_ sender: Any) {
-        let signUpView = SignUpController(nibName: "SignUpController", bundle: nil)
+        let signUpView = SignUpController(nibName: "SignUpViewController", bundle: nil)
         navigationController?.pushViewController(signUpView, animated: true)
     }
     
     @IBAction func alreadyExistButtonTap(_ sender: Any) {
-        let signInView = SignInController(nibName: "SignInController", bundle: nil)
+        let signInView = SignInController(nibName: "SignInViewController", bundle: nil)
         navigationController?.pushViewController(signInView, animated: true)
     }
 }

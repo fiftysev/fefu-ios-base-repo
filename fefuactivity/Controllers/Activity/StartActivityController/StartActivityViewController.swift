@@ -39,7 +39,7 @@ class StartActivityViewController: UIViewController {
     
     
     // save for delete old routes
-    private let coreDataContainer = FEFUCoreDataContainer.instance
+    private let CDController: CDActivityController = CDActivityController()
     private var previousRouteSegment: MKPolyline?
     private var currentDuration: TimeInterval = TimeInterval()
     private var startValueForTimer: Date?
@@ -49,6 +49,25 @@ class StartActivityViewController: UIViewController {
     private var activityDate: Date?
     private var activityDuration: TimeInterval = TimeInterval()
     private var activityType: String?
+    
+    private var timeFormatter: DateComponentsFormatter = {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.hour, .minute, .second]
+        formatter.zeroFormattingBehavior = .pad
+        return formatter
+    }()
+    
+    private var timeFormatterShort: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        return formatter
+    }()
+    
+    private var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        return formatter
+    }()
     
     private let locationManager: CLLocationManager = {
         let manager = CLLocationManager()
@@ -167,10 +186,6 @@ class StartActivityViewController: UIViewController {
         let currentTime = Date().timeIntervalSince(startValueForTimer!)
         
         currentDuration = currentTime
-        let timeFormatter = DateComponentsFormatter()
-        timeFormatter.allowedUnits = [.hour, .minute, .second]
-        timeFormatter.zeroFormattingBehavior = .pad
-        
         timerLabel.text = timeFormatter.string(from: currentTime + activityDuration)
     }
     
@@ -196,25 +211,18 @@ class StartActivityViewController: UIViewController {
     @IBAction func didFinishTracking(_ sender: FinishActivityButton) {
         locationManager.stopUpdatingLocation()
         
-        let context = coreDataContainer.context
-        let activity = CDActivity(context: context)
-        
         activityDuration += currentDuration
         timer?.invalidate()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm"
         
-        let activityStartTime = dateFormatter.string(from: activityDate!)
-        let activityEndTime = dateFormatter.string(from: activityDate! + activityDuration)
+        let startTime = timeFormatterShort.string(from: activityDate!)
+        let endTime = timeFormatterShort.string(from: activityDate! + activityDuration)
         
-        activity.type = activityType
-        activity.date = activityDate
-        activity.distance = activityDistance
-        activity.startTime = activityStartTime
-        activity.endTime = activityEndTime
-        activity.duration = activityDuration
+        let activityType = activityType
+        let startDate = dateFormatter.string(from: activityDate ?? Date())
+        let distance = String(format: "%.2f км", activityDistance / 1000)
+        let duration = timeFormatter.string(from: activityDuration)
         
-        coreDataContainer.saveContext()
+        CDController.saveActivity(distance, duration!, activityType!, startDate, startTime, endTime)
         
         navigationController?.popViewController(animated: true)
     }
@@ -227,7 +235,7 @@ extension StartActivityViewController: CLLocationManagerDelegate {
         guard let currentLocation = locations.first else {
             return
         }
-    
+        
         userLocation = currentLocation
     }
 }
